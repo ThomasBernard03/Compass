@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Compass.ViewModels"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             x:Class="Compass.MainPage"
+             x:DataType="viewModels:CompassViewModel"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:converters="clr-namespace:Compass.Commons.Converters"
+             ios:Page.UseSafeArea="false">
+
+    <ContentPage.Resources>
+        <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="250, 60, 60, *" VerticalOptions="FillAndExpand">
+            <Frame Style="{StaticResource Header}" Grid.RowSpan="2" Margin="0" ios:Page.UseSafeArea="False">
+                <StackLayout>
+                    <Label
+                        Text="{Binding CompassValue, StringFormat='{}{0:F0}°'}"
+                        HorizontalOptions="Center"
+                        TextColor="{StaticResource White}"
+                        FontSize="52"/>
+
+                    <Label
+                        Text="{Binding CompassValue, Converter={StaticResource CompassValueToLabelConverter}}"
+                        HorizontalOptions="Center"
+                        TextColor="{StaticResource White}"
+                        FontSize="52"/>
+
+                </StackLayout>
+            </Frame>
+
+            <Frame Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource FloatingMenu}">
+
+
+            </Frame>
+
+            <Grid Grid.Row="3" Padding="12">
+
+                <StackLayout Grid.Row="3" BackgroundColor="White">
+
+                    <Image
+                        Source="compass.png"
+                        HeightRequest="200"
+                        HorizontalOptions="Center"
+                        Rotation="{Binding CompassValue}"/>
+                </StackLayout>
+
+                <Button
+                    Style="{StaticResource FloatingButton}"
+                    Text="+"
+                    FontSize="32"/>
+            </Grid>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
