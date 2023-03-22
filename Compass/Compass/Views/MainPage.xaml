@@ -49,6 +49,7 @@
                 </StackLayout>
 
                 <Button
+                    Command="{Binding AddCommand}"
                     Style="{StaticResource FloatingButton}"
                     Text="+"
                     FontSize="32"/>

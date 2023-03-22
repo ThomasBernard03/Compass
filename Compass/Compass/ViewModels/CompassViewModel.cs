@@ -1,5 +1,6 @@
 ﻿using System;
 using Compass.Services;
+using Compass.Services.Interfaces;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace Compass.ViewModels;
@@ -10,11 +11,12 @@ public class CompassViewModel : BaseViewModel
     private readonly GpsService _gpsService;
 
 
-	public CompassViewModel(GpsService gpsService)
+	public CompassViewModel(GpsService gpsService, INavigationService navigationService) : base(navigationService)
 	{
         GetCurrentLocationCommand = new Command(async x => await OnGetCurrentLocationCommand());
+        AddCommand = new Command(async x => await OnAddCommand());
 
-		if (Microsoft.Maui.Devices.Sensors.Compass.Default.IsSupported)
+        if (Microsoft.Maui.Devices.Sensors.Compass.Default.IsSupported)
 		{
             if (!Microsoft.Maui.Devices.Sensors.Compass.Default.IsMonitoring)
             {
@@ -30,7 +32,28 @@ public class CompassViewModel : BaseViewModel
 
     }
 
+    public override Task InitializeAsync(object parameters)
+    {
+        throw new NotImplementedException();
+    }
+
     #region Methods & Commands
+
+    #region AddCommand => OnAddCommand
+    public Command AddCommand { get; private set; }
+    private async Task OnAddCommand()
+    {
+        try
+        {
+            await NavigationService.NavigateToAsync<CreateLocationViewModel>();
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
+    #endregion
 
     #region GetCurrentLocationCommand => OnGetCurrentLocationCommand
     public Command GetCurrentLocationCommand { get; private set; }
