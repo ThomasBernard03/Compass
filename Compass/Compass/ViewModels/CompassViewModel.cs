@@ -1,21 +1,82 @@
 ﻿using System;
+using Compass.Services;
 using Microsoft.Maui.Devices.Sensors;
 
 namespace Compass.ViewModels;
 
 public class CompassViewModel : BaseViewModel
 {
-	private string _currentLocation;
-	public string CurrentLocation
+
+    private readonly GpsService _gpsService;
+
+
+	public CompassViewModel(GpsService gpsService)
 	{
-		get => _currentLocation;
-		set
+        GetCurrentLocationCommand = new Command(async x => await OnGetCurrentLocationCommand());
+
+		if (Microsoft.Maui.Devices.Sensors.Compass.Default.IsSupported)
 		{
+            if (!Microsoft.Maui.Devices.Sensors.Compass.Default.IsMonitoring)
+            {
+                Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged += OnCompassChange;
+                Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.UI);
+            }
+            else
+            {
+                Microsoft.Maui.Devices.Sensors.Compass.Default.Stop();
+                Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= OnCompassChange;
+            }
+        }
+
+    }
+
+    #region Methods & Commands
+
+    #region GetCurrentLocationCommand => OnGetCurrentLocationCommand
+    public Command GetCurrentLocationCommand { get; private set; }
+    private async Task OnGetCurrentLocationCommand()
+    {
+        try
+        {
+            Location location = await Geolocation.Default.GetLastKnownLocationAsync();
+
+            CurrentLocation = $"{location.Latitude} {location.Longitude}";
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+    #endregion
+
+    #region OnCompassChange
+
+    private void OnCompassChange(object sender, CompassChangedEventArgs e)
+    {
+        CompassValue = e.Reading.HeadingMagneticNorth;
+    }
+
+    #endregion
+
+    #endregion
+
+
+    #region Properties
+
+    #region CurrentLocation
+    private string _currentLocation;
+    public string CurrentLocation
+    {
+        get => _currentLocation;
+        set
+        {
             _currentLocation = value;
             OnPropertyChanged(nameof(CurrentLocation));
-		} 
-	}
+        }
+    }
+    #endregion
 
+    #region CompassValue
     private double _compassValue;
     public double CompassValue
     {
@@ -26,49 +87,8 @@ public class CompassViewModel : BaseViewModel
             OnPropertyChanged(nameof(CompassValue));
         }
     }
+    #endregion
 
-    public Command OnGetCurrentLocationCommand { get; private set; }
-
-
-	public CompassViewModel()
-	{
-		OnGetCurrentLocationCommand = new Command(x => GetCurrentLocation());
-
-		if (Microsoft.Maui.Devices.Sensors.Compass.Default.IsSupported)
-		{
-            if (!Microsoft.Maui.Devices.Sensors.Compass.Default.IsMonitoring)
-            {
-                // Turn on compass
-                Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged += Compass_ReadingChanged;
-                Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.UI);
-            }
-            else
-            {
-                // Turn off compass
-                Microsoft.Maui.Devices.Sensors.Compass.Default.Stop();
-                Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= Compass_ReadingChanged;
-            }
-        }
-
-    }
-
-	public async void GetCurrentLocation()
-	{
-		try
-		{
-            Location location = await Geolocation.Default.GetLastKnownLocationAsync();
-
-			CurrentLocation = $"{location.Latitude} {location.Longitude}";
-        }
-		catch(Exception e)
-		{
-
-		}
-	}
-
-    private void Compass_ReadingChanged(object sender, CompassChangedEventArgs e)
-    {
-        CompassValue = e.Reading.HeadingMagneticNorth;
-    }
+    #endregion
 }
 

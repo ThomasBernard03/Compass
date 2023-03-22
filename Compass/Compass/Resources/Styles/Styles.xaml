@@ -9,12 +9,24 @@
         <Setter Property="BorderColor" Value="Transparent"/>
         <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
         <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="HeightRequest" Value="300"/>
+        <Setter Property="HasShadow" Value="False"/>
     </Style>
 
     <Style TargetType="Frame" x:Key="FloatingMenu">
         <Setter Property="Margin" Value="20"/>
         <Setter Property="CornerRadius" Value="20"/>
+    </Style>
+
+
+    <Style TargetType="Button" x:Key="FloatingButton">
+        <Setter Property="HeightRequest" Value="50"/>
+        <Setter Property="WidthRequest" Value="50"/>
+        <Setter Property="CornerRadius" Value="25"/>
+        <Setter Property="TextColor" Value="{StaticResource White}"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="End"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+
     </Style>
 
 

@@ -69,6 +69,7 @@
 	  <None Remove="Services\" />
 	  <None Remove="Commons\" />
 	  <None Remove="Commons\Converters\" />
+	  <None Remove="Services\Interfaces\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -76,6 +77,7 @@
 	  <Folder Include="Services\" />
 	  <Folder Include="Commons\" />
 	  <Folder Include="Commons\Converters\" />
+	  <Folder Include="Services\Interfaces\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\compass.png" />
