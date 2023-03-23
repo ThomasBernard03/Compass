@@ -22,13 +22,16 @@
         <Setter Property="HeightRequest" Value="50"/>
         <Setter Property="WidthRequest" Value="50"/>
         <Setter Property="CornerRadius" Value="25"/>
-        <Setter Property="TextColor" Value="{StaticResource White}"/>
         <Setter Property="HorizontalOptions" Value="End"/>
         <Setter Property="VerticalOptions" Value="End"/>
-        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
-
     </Style>
 
+    <Style TargetType="Button">
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="TextColor" Value="{StaticResource White}"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+    </Style>
 
 </ResourceDictionary>
 

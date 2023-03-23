@@ -1,7 +1,9 @@
 ﻿using System;
+using Compass.Services.Interfaces;
+
 namespace Compass.Services;
 
-public class GpsService
+public class GpsService : IGpsService
 {
     private const double EarthRadiusMeters = 6371000;
 
@@ -34,6 +36,12 @@ public class GpsService
         double distanceMeters = EarthRadiusMeters * c;
 
         return (int)Math.Round(distanceMeters);
+    }
+
+    public async Task<Location> GetLocationAsync()
+    {
+        var location = await Geolocation.Default.GetLastKnownLocationAsync();
+        return location;
     }
 }
 
