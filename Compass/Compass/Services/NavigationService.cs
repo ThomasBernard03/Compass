@@ -22,7 +22,6 @@ public class NavigationService : INavigationService
         // Ajoutez les mappings entre les ViewModels et les Views ici
         _mappings.Add(typeof(CompassViewModel), typeof(MainPage));
         _mappings.Add(typeof(CreateLocationViewModel), typeof(CreateLocationPage));
-        // _mappings.Add(typeof(AnotherViewModel), typeof(AnotherPage));
     }
 
     public async Task NavigateToAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
@@ -59,5 +58,34 @@ public class NavigationService : INavigationService
     public async Task GoBackAsync()
     {
         await Application.Current.MainPage.Navigation.PopAsync();
+    }
+
+    public async Task NavigateToModalAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
+    {
+        var viewModelType = typeof(TViewModel);
+        if (!_mappings.ContainsKey(viewModelType))
+        {
+            throw new ArgumentException($"No mapping found for {viewModelType}.");
+        }
+
+        var viewType = _mappings[viewModelType];
+        var view = (Page)_serviceProvider.GetService(viewType);
+        var viewModel = (TViewModel)_serviceProvider.GetService(viewModelType);
+
+        viewModel.NavigationService = this;
+        view.BindingContext = viewModel;
+
+
+        await Application.Current.MainPage.Navigation.PushModalAsync(view);
+
+        if (parameter != null)
+        {
+            await viewModel.InitializeAsync(parameter);
+        }
+    }
+
+    public async Task CloseModalAsync()
+    {
+        await Application.Current.MainPage.Navigation.PopModalAsync();
     }
 }

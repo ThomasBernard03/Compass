@@ -2,11 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Compass.Views.CreateLocationPage"
-             Title="CreateLocationPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="CreateLocationPage"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.ModalPresentationStyle="PageSheet"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:viewModels="clr-namespace:Compass.ViewModels"
+             x:DataType="viewModels:CreateLocationViewModel">
+
+    <Grid
+        ColumnDefinitions="Auto, *, Auto"
+        ColumnSpacing="6"
+        RowSpacing="6"
+        RowDefinitions="Auto, Auto, Auto, Auto"
+        Padding="20">
+
+        <Label
+            VerticalOptions="Center"
+            Text="Name"/>
+
+        <Entry
+            Grid.Column="1"
+            Placeholder="Name"/>
+
+        <Button
+            Command="{Binding GetLocationCommand}"
+            Grid.Column="2"
+            Text="+"/>
+
+        <Label
+            VerticalOptions="Center"
+            Grid.Row="1"
+            Text="Longitude"/>
+
+        <Entry
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Placeholder="Longitude"/>
+
+        <Label
+            VerticalOptions="Center"
+            Grid.Row="2"
+            Text="Longitude"/>
+
+        <Entry
+            Grid.Row="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Placeholder="Longitude"/>
+
+
+        <Button
+            BackgroundColor="{StaticResource Primary}"
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            Text="Create"/>
+
+    </Grid>
 </ContentPage>

@@ -8,10 +8,10 @@ namespace Compass.ViewModels;
 public class CompassViewModel : BaseViewModel
 {
 
-    private readonly GpsService _gpsService;
+    private readonly IGpsService _gpsService;
 
 
-	public CompassViewModel(GpsService gpsService, INavigationService navigationService) : base(navigationService)
+	public CompassViewModel(IGpsService gpsService, INavigationService navigationService) : base(navigationService)
 	{
         GetCurrentLocationCommand = new Command(async x => await OnGetCurrentLocationCommand());
         AddCommand = new Command(async x => await OnAddCommand());
@@ -45,7 +45,7 @@ public class CompassViewModel : BaseViewModel
     {
         try
         {
-            await NavigationService.NavigateToAsync<CreateLocationViewModel>();
+            await NavigationService.NavigateToModalAsync<CreateLocationViewModel>();
         }
         catch (Exception e)
         {
