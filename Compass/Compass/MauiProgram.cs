@@ -34,7 +34,7 @@ public static class MauiProgram
 
     private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
-        mauiAppBuilder.Services.AddTransient<MainPage>();
+        mauiAppBuilder.Services.AddSingleton<CompassPage>();
         mauiAppBuilder.Services.AddTransient<CreateLocationPage>();
 
         return mauiAppBuilder;

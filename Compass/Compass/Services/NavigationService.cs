@@ -20,7 +20,7 @@ public class NavigationService : INavigationService
     private void CreateMap()
     {
         // Ajoutez les mappings entre les ViewModels et les Views ici
-        _mappings.Add(typeof(CompassViewModel), typeof(MainPage));
+        _mappings.Add(typeof(CompassViewModel), typeof(CompassPage));
         _mappings.Add(typeof(CreateLocationViewModel), typeof(CreateLocationPage));
     }
 
@@ -39,7 +39,7 @@ public class NavigationService : INavigationService
         viewModel.NavigationService = this;
         view.BindingContext = viewModel;
 
-        if (view is MainPage mainPage)
+        if (view is CompassPage mainPage)
         {
             var navPage = new NavigationPage(mainPage);
             await Application.Current.MainPage.Navigation.PushAsync(navPage);
