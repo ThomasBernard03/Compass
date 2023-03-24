@@ -8,6 +8,7 @@
              x:DataType="viewModels:CompassViewModel"
              NavigationPage.HasNavigationBar="False"
              xmlns:converters="clr-namespace:Compass.Commons.Converters"
+             xmlns:entities="clr-namespace:Compass.Models.Entities"
              ios:Page.UseSafeArea="False">
 
     <ContentPage.Behaviors>
@@ -21,24 +22,48 @@
     <ContentPage.Content>
         <Grid RowDefinitions="250, 60, 60, *" VerticalOptions="FillAndExpand">
             <Frame Style="{StaticResource Header}" Grid.RowSpan="2">
-                <StackLayout>
-                    <Label
-                        Text="{Binding CompassValue, StringFormat='{}{0:F0}°'}"
-                        HorizontalOptions="Center"
-                        TextColor="{StaticResource White}"
-                        FontSize="52"/>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label
+                            Text="{Binding CompassValue, StringFormat='{}{0:F0}°'}"
+                            HorizontalOptions="Center"
+                            TextColor="{StaticResource White}"
+                            FontSize="52"/>
 
-                    <Label
-                        Text="{Binding CompassValue, Converter={StaticResource CompassValueToLabelConverter}}"
-                        HorizontalOptions="Center"
-                        TextColor="{StaticResource White}"
-                        FontSize="52"/>
+                        <Label
+                            Text="{Binding CompassValue, Converter={StaticResource CompassValueToLabelConverter}}"
+                            HorizontalOptions="Center"
+                            TextColor="{StaticResource White}"
+                            FontSize="52"/>
 
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical">
+                        <Label
+                            Text="{Binding Longitude}"/>
+
+                        <Label
+                            Text="{Binding Latitude}"/>
+
+                    </StackLayout>
                 </StackLayout>
             </Frame>
 
-            <Frame Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource FloatingMenu}">
-
+            <Frame Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource FloatingMenu}" Padding="5">
+                <CollectionView ItemsSource="{Binding Locations}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="entities:LocationEntity">
+                            <StackLayout
+                                Orientation="Vertical"
+                                WidthRequest="80">
+                                <Label Text="{Binding Name}"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
             </Frame>
 
