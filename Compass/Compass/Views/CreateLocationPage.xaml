@@ -9,54 +9,87 @@
              xmlns:viewModels="clr-namespace:Compass.ViewModels"
              x:DataType="viewModels:CreateLocationViewModel">
 
-    <Grid
-        ColumnDefinitions="Auto, *, Auto"
-        ColumnSpacing="6"
-        RowSpacing="6"
-        RowDefinitions="Auto, Auto, Auto, Auto"
-        Padding="20">
 
-        <Label
-            VerticalOptions="Center"
-            Text="Name"/>
+    <Grid RowDefinitions="200, 25, 25, *">
 
-        <Entry
-            Grid.Column="1"
-            Placeholder="Name"/>
-
-        <Button
-            Command="{Binding GetLocationCommand}"
-            Grid.Column="2"
-            Text="+"/>
-
-        <Label
-            VerticalOptions="Center"
-            Grid.Row="1"
-            Text="Longitude"/>
-
-        <Entry
-            Grid.Row="1"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Placeholder="Longitude"/>
-
-        <Label
-            VerticalOptions="Center"
-            Grid.Row="2"
-            Text="Longitude"/>
-
-        <Entry
-            Grid.Row="2"
-            Grid.Column="1"
-            Grid.ColumnSpan="2"
-            Placeholder="Longitude"/>
+        <Image
+            Grid.RowSpan="2"
+            Aspect="AspectFill"
+            BackgroundColor="Black"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            Source="{Binding Picture}"/>
 
 
         <Button
-            BackgroundColor="{StaticResource Primary}"
+            Margin="20, 0"
+            Text="+"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Style="{StaticResource FloatingButton}"
+            Command="{Binding TakePictureCommand}"/>
+
+
+        <Grid
             Grid.Row="3"
-            Grid.ColumnSpan="3"
-            Text="Create"/>
+            ColumnDefinitions="Auto, *, Auto"
+            ColumnSpacing="6"
+            RowSpacing="6"
+            RowDefinitions="Auto, Auto, Auto, Auto"
+            Padding="20">
+
+            <Label
+                VerticalOptions="Center"
+                Text="Name"/>
+
+            <Entry
+                ReturnType="Next"
+                Grid.Column="1"
+                Placeholder="Name"/>
+
+            <Button
+                Command="{Binding GetLocationCommand}"
+                Grid.Column="2"
+                Text="+"/>
+
+            <Label
+                VerticalOptions="Center"
+                Grid.Row="1"
+                Text="Longitude"/>
+
+            <Entry
+                ReturnType="Next"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Placeholder="Longitude"
+                Text="{Binding Longitude}"/>
+
+            <Label
+                VerticalOptions="Center"
+                Grid.Row="2"
+                Text="Longitude"/>
+
+            <Entry
+                ReturnCommand="{Binding CreateLocationCommand}"
+                ReturnType="Done"
+                Grid.Row="2"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Placeholder="Latitude"
+                Text="{Binding Latitude}"/>
+
+
+            <Button
+                Command="{Binding CreateLocationCommand}"
+                Padding="12"
+                BackgroundColor="{StaticResource Primary}"
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
+                Text="Create"/>
+
+        </Grid>
 
     </Grid>
+
 </ContentPage>

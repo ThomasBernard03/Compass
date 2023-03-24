@@ -1,12 +1,12 @@
 ﻿using Compass.ViewModels;
 
-namespace Compass;
+namespace Compass.Views;
 
-public partial class MainPage : ContentPage
+public partial class CompassPage : ContentPage
 {
     private readonly CompassViewModel _viewModel;
 
-    public MainPage(CompassViewModel viewModel)
+    public CompassPage(CompassViewModel viewModel)
     {
         InitializeComponent();
 
