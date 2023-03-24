@@ -12,10 +12,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Compass</ApplicationTitle>
+		<ApplicationTitle>Compasss</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.compass</ApplicationId>
+		<ApplicationId>com.thomasbernard.compass</ApplicationId>
 		<ApplicationIdGuid>c3a5f8ef-9734-4379-a751-4f33549052c7</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -32,6 +32,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
+	  <CodesignKey>Apple Development: Created via API (G63RG76FQC)</CodesignKey>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
