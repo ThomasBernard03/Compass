@@ -12,6 +12,7 @@ public class CreateLocationViewModel : BaseViewModel
         _gpsService = gpsService;
 
         GetLocationCommand = new Command(async x => await OnGetLocationCommand());
+        TakePictureCommand = new Command(async x => await OnTakePictureCommand());
     }
 
     public override Task InitializeAsync(object parameters)
@@ -28,7 +29,36 @@ public class CreateLocationViewModel : BaseViewModel
         Latitude = location.Latitude;
         Longitude = location.Longitude;
     }
+
+
+    public Command TakePictureCommand { get; private set; }
+    private async Task OnTakePictureCommand()
+    {
+        try
+        {
+            var mediaPickerOptions = new MediaPickerOptions
+            {
+                Title = "Prendre une photo"
+            };
+
+            var photo = await MediaPicker.PickPhotoAsync(mediaPickerOptions);
+
+            if (photo != null)
+            {
+                // Utilisez 'photo.FullPath' pour accéder au chemin du fichier de la photo
+
+                Picture = ImageSource.FromFile(photo.FullPath);
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+
+    }
     #endregion
+
+
 
     #region Properties
 
@@ -54,6 +84,19 @@ public class CreateLocationViewModel : BaseViewModel
         {
             _longitude = value;
             OnPropertyChanged(nameof(Longitude));
+        }
+    }
+    #endregion
+
+    #region Picture
+    private ImageSource _picture;
+    public ImageSource Picture
+    {
+        get => _picture;
+        set
+        {
+            _picture = value;
+            OnPropertyChanged(nameof(Picture));
         }
     }
     #endregion

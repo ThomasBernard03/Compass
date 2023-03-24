@@ -37,5 +37,9 @@
 		</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Fill in a reason why your app needs access to location.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Accès à la caméra pour prendre des photos.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Sauvegarder les photos prises avec l'application.</string>
 </dict>
 </plist>
