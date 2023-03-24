@@ -32,6 +32,16 @@ public class CompassViewModel : BaseViewModel
 
     }
 
+    public override Task OnNavigatedFrom(NavigatedFromEventArgs args)
+    {
+        return base.OnNavigatedFrom(args);
+    }
+
+    public override Task OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        return base.OnNavigatedTo(args);
+    }
+
     public override Task InitializeAsync(object parameters)
     {
         throw new NotImplementedException();
