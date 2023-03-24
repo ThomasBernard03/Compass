@@ -38,7 +38,8 @@
             Grid.Row="1"
             Grid.Column="1"
             Grid.ColumnSpan="2"
-            Placeholder="Longitude"/>
+            Placeholder="Longitude"
+            Text="{Binding Longitude}"/>
 
         <Label
             VerticalOptions="Center"
@@ -49,7 +50,8 @@
             Grid.Row="2"
             Grid.Column="1"
             Grid.ColumnSpan="2"
-            Placeholder="Longitude"/>
+            Placeholder="Latitude"
+            Text="{Binding Latitude}"/>
 
 
         <Button

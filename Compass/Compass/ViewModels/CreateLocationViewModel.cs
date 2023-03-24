@@ -24,20 +24,36 @@ public class CreateLocationViewModel : BaseViewModel
     private async Task OnGetLocationCommand()
     {
         var location = await _gpsService.GetLocationAsync();
+
+        Latitude = location.Latitude;
+        Longitude = location.Longitude;
     }
     #endregion
 
     #region Properties
 
     #region Latitude
-    private string _latitude;
-    public string Latitude
+    private double _latitude;
+    public double Latitude
     {
         get => _latitude;
         set
         {
             _latitude = value;
             OnPropertyChanged(nameof(Latitude));
+        }
+    }
+    #endregion
+
+    #region Longitude
+    private double _longitude;
+    public double Longitude
+    {
+        get => _longitude;
+        set
+        {
+            _longitude = value;
+            OnPropertyChanged(nameof(Longitude));
         }
     }
     #endregion
