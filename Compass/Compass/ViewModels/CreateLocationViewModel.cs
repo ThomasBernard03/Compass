@@ -1,4 +1,6 @@
 ﻿using System;
+using Compass.Models.Entities;
+using Compass.Repositories.Interfaces;
 using Compass.Services.Interfaces;
 
 namespace Compass.ViewModels;
@@ -6,10 +8,12 @@ namespace Compass.ViewModels;
 public class CreateLocationViewModel : BaseViewModel
 {
     private readonly IGpsService _gpsService;
+    private readonly IRepository<LocationEntity> _locationRepository;
 
-    public CreateLocationViewModel(INavigationService navigationService, IGpsService gpsService) : base(navigationService)
+    public CreateLocationViewModel(INavigationService navigationService, IGpsService gpsService, IRepository<LocationEntity> locationRepository) : base(navigationService)
 	{
         _gpsService = gpsService;
+        _locationRepository = locationRepository;
 
         GetLocationCommand = new Command(async x => await OnGetLocationCommand());
         TakePictureCommand = new Command(async x => await OnTakePictureCommand());
@@ -68,7 +72,18 @@ public class CreateLocationViewModel : BaseViewModel
     {
         try
         {
+
+            var location = new LocationEntity()
+            {
+                Name = Name,
+                Longitude = Longitude,
+                Latitude = Latitude
+            };
+            _locationRepository.Insert(location);
+
+
             await NavigationService.CloseModalAsync();
+
         }
         catch (Exception e)
         {
@@ -119,6 +134,19 @@ public class CreateLocationViewModel : BaseViewModel
         {
             _picture = value;
             OnPropertyChanged(nameof(Picture));
+        }
+    }
+    #endregion
+
+    #region Name
+    private string _name;
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            _name = value;
+            OnPropertyChanged(nameof(Name));
         }
     }
     #endregion

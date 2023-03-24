@@ -43,6 +43,7 @@
                 Text="Name"/>
 
             <Entry
+                Text="{Binding Name}"
                 ReturnType="Next"
                 Grid.Column="1"
                 Placeholder="Name"/>
