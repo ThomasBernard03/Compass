@@ -13,6 +13,7 @@ public class CreateLocationViewModel : BaseViewModel
 
         GetLocationCommand = new Command(async x => await OnGetLocationCommand());
         TakePictureCommand = new Command(async x => await OnTakePictureCommand());
+        CreateLocationCommand = new Command(async x => await OnCreateLocationCommand());
     }
 
     public override Task InitializeAsync(object parameters)
@@ -21,6 +22,8 @@ public class CreateLocationViewModel : BaseViewModel
     }
 
     #region Commands & Methods
+
+    #region GetLocationCommand => OnGetLocationCommand
     public Command GetLocationCommand { get; private set; }
     private async Task OnGetLocationCommand()
     {
@@ -29,8 +32,9 @@ public class CreateLocationViewModel : BaseViewModel
         Latitude = location.Latitude;
         Longitude = location.Longitude;
     }
+    #endregion
 
-
+    #region TakePictureCommand => OnTakePictureCommand
     public Command TakePictureCommand { get; private set; }
     private async Task OnTakePictureCommand()
     {
@@ -56,6 +60,24 @@ public class CreateLocationViewModel : BaseViewModel
         }
 
     }
+    #endregion
+
+    #region CreateLocationCommand => OnCreateLocationCommand
+    public Command CreateLocationCommand { get; private set; }
+    private async Task OnCreateLocationCommand()
+    {
+        try
+        {
+            await NavigationService.CloseModalAsync();
+        }
+        catch (Exception e)
+        {
+
+        }
+
+    }
+    #endregion
+
     #endregion
 
 

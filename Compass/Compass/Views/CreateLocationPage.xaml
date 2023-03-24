@@ -10,9 +10,10 @@
              x:DataType="viewModels:CreateLocationViewModel">
 
 
-    <Grid RowDefinitions="200, 50, *">
+    <Grid RowDefinitions="200, 25, 25, *">
 
         <Image
+            Grid.RowSpan="2"
             Aspect="AspectFill"
             BackgroundColor="Black"
             VerticalOptions="FillAndExpand"
@@ -21,27 +22,28 @@
 
 
         <Button
+            Margin="20, 0"
             Text="+"
             Grid.Row="1"
+            Grid.RowSpan="2"
             Style="{StaticResource FloatingButton}"
-            Command="{Binding TakePictureCommand}">
+            Command="{Binding TakePictureCommand}"/>
 
 
-        </Button>
-
-            <Grid
-                Grid.Row="2"
-                ColumnDefinitions="Auto, *, Auto"
-                ColumnSpacing="6"
-                RowSpacing="6"
-                RowDefinitions="Auto, Auto, Auto, Auto"
-                Padding="20">
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="Auto, *, Auto"
+            ColumnSpacing="6"
+            RowSpacing="6"
+            RowDefinitions="Auto, Auto, Auto, Auto"
+            Padding="20">
 
             <Label
                 VerticalOptions="Center"
                 Text="Name"/>
 
             <Entry
+                ReturnType="Next"
                 Grid.Column="1"
                 Placeholder="Name"/>
 
@@ -56,6 +58,7 @@
                 Text="Longitude"/>
 
             <Entry
+                ReturnType="Next"
                 Grid.Row="1"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
@@ -68,6 +71,8 @@
                 Text="Longitude"/>
 
             <Entry
+                ReturnCommand="{Binding CreateLocationCommand}"
+                ReturnType="Done"
                 Grid.Row="2"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
@@ -76,6 +81,8 @@
 
 
             <Button
+                Command="{Binding CreateLocationCommand}"
+                Padding="12"
                 BackgroundColor="{StaticResource Primary}"
                 Grid.Row="3"
                 Grid.ColumnSpan="3"
