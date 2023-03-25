@@ -5,6 +5,9 @@ using Compass.ViewModels;
 using Compass.Views;
 using Microsoft.Extensions.Logging;
 using Compass.Services.Interfaces;
+using Compass.Repositories.Interfaces;
+using Compass.Models.Entities;
+using Compass.Repositories;
 
 namespace Compass;
 
@@ -53,6 +56,9 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<IGpsService, GpsService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
+
+
+        mauiAppBuilder.Services.AddSingleton<IRepository<LocationEntity>, Repository<LocationEntity>>();
 
         return mauiAppBuilder;
     }

@@ -21,5 +21,15 @@ public abstract class BaseViewModel : INotifyPropertyChanged
     public event PropertyChangedEventHandler PropertyChanged;
     public void OnPropertyChanged([CallerMemberName] string name = "") =>
     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+    public virtual async Task OnNavigatedFrom(NavigatedFromEventArgs args)
+    {
+
+    }
+
+    public virtual async Task OnNavigatedTo(NavigatedToEventArgs args)
+    {
+
+    }
 }
 

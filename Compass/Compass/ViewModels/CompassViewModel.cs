@@ -1,20 +1,33 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using Compass.Models.Entities;
 using Compass.Services;
 using Compass.Services.Interfaces;
 using Microsoft.Maui.Devices.Sensors;
+using Compass.Repositories.Interfaces;
 
 namespace Compass.ViewModels;
 
 public class CompassViewModel : BaseViewModel
 {
 
+    private readonly IRepository<LocationEntity> _locationRepository;
     private readonly IGpsService _gpsService;
 
 
-	public CompassViewModel(IGpsService gpsService, INavigationService navigationService) : base(navigationService)
+	public CompassViewModel(
+        INavigationService navigationService,
+        IRepository<LocationEntity> locationRepository,
+        IGpsService gpsService) : base(navigationService)
 	{
-        GetCurrentLocationCommand = new Command(async x => await OnGetCurrentLocationCommand());
+        _locationRepository = locationRepository;
+        _gpsService = gpsService;
+
         AddCommand = new Command(async x => await OnAddCommand());
+
+        var locations = _locationRepository.Get();
+        Locations = new ObservableCollection<LocationEntity>(locations);
+
 
         if (Microsoft.Maui.Devices.Sensors.Compass.Default.IsSupported)
 		{
@@ -29,6 +42,21 @@ public class CompassViewModel : BaseViewModel
                 Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= OnCompassChange;
             }
         }
+
+    }
+
+    public override Task OnNavigatedFrom(NavigatedFromEventArgs args)
+    {
+        return base.OnNavigatedFrom(args);
+    }
+
+    public override async Task OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        await base.OnNavigatedTo(args);
+
+        var location = await _gpsService.GetLocationAsync();
+        Latitude = location.Latitude;
+        Longitude = location.Longitude;
 
     }
 
@@ -55,23 +83,6 @@ public class CompassViewModel : BaseViewModel
 
     #endregion
 
-    #region GetCurrentLocationCommand => OnGetCurrentLocationCommand
-    public Command GetCurrentLocationCommand { get; private set; }
-    private async Task OnGetCurrentLocationCommand()
-    {
-        try
-        {
-            Location location = await Geolocation.Default.GetLastKnownLocationAsync();
-
-            CurrentLocation = $"{location.Latitude} {location.Longitude}";
-        }
-        catch (Exception e)
-        {
-
-        }
-    }
-    #endregion
-
     #region OnCompassChange
 
     private void OnCompassChange(object sender, CompassChangedEventArgs e)
@@ -86,15 +97,28 @@ public class CompassViewModel : BaseViewModel
 
     #region Properties
 
-    #region CurrentLocation
-    private string _currentLocation;
-    public string CurrentLocation
+    #region Latitude
+    private double _latitude;
+    public double Latitude
     {
-        get => _currentLocation;
+        get => _latitude;
         set
         {
-            _currentLocation = value;
-            OnPropertyChanged(nameof(CurrentLocation));
+            _latitude = value;
+            OnPropertyChanged(nameof(Latitude));
+        }
+    }
+    #endregion
+
+    #region Longitude
+    private double _longitude;
+    public double Longitude
+    {
+        get => _longitude;
+        set
+        {
+            _longitude = value;
+            OnPropertyChanged(nameof(Longitude));
         }
     }
     #endregion
@@ -110,6 +134,21 @@ public class CompassViewModel : BaseViewModel
             OnPropertyChanged(nameof(CompassValue));
         }
     }
+    #endregion
+
+    #region Locations
+
+    private ObservableCollection<LocationEntity> _locations;
+    public ObservableCollection<LocationEntity> Locations
+    {
+        get => _locations;
+        set
+        {
+            _locations = value;
+            OnPropertyChanged(nameof(Locations));
+        }
+    }
+
     #endregion
 
     #endregion
