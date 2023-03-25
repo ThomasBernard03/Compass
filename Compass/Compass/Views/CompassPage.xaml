@@ -17,6 +17,7 @@
 
     <ContentPage.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
+        <converters:ReverseRotationConverter x:Key="ReverseRotationConverter"/>
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -75,7 +76,7 @@
                         Source="compass.png"
                         HeightRequest="200"
                         HorizontalOptions="Center"
-                        Rotation="{Binding CompassValue}"/>
+                        Rotation="{Binding CompassValue, Converter={StaticResource ReverseRotationConverter}}"/>
                 </StackLayout>
 
                 <Button
