@@ -6,14 +6,9 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              x:Class="Compass.Views.CompassPage"
              x:DataType="viewModels:CompassViewModel"
-             NavigationPage.HasNavigationBar="False"
              xmlns:converters="clr-namespace:Compass.Commons.Converters"
              xmlns:entities="clr-namespace:Compass.Models.Entities"
              ios:Page.UseSafeArea="False">
-
-    <ContentPage.Behaviors>
-        <mct:StatusBarBehavior StatusBarColor="Transparent" />
-    </ContentPage.Behaviors>
 
     <ContentPage.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
@@ -21,8 +16,11 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="250, 60, 60, *" VerticalOptions="FillAndExpand">
-            <Frame Style="{StaticResource Header}" Grid.RowSpan="2">
+        <Grid RowDefinitions="250, 60, 60, *" VerticalOptions="FillAndExpand" IgnoreSafeArea="True" ios:Page.UseSafeArea="True">
+            <StackLayout Style="{StaticResource Header}" Grid.RowSpan="2">
+                <Border>
+                    <RoundRectangle CornerRadius="0, 0, 10, 10"/>
+                </Border>
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                         <Label
@@ -48,7 +46,7 @@
 
                     </StackLayout>
                 </StackLayout>
-            </Frame>
+            </StackLayout>
 
             <Frame Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource FloatingMenu}" Padding="5">
                 <CollectionView ItemsSource="{Binding Locations}">
