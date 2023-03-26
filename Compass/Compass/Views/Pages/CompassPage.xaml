@@ -5,6 +5,7 @@
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              x:Class="Compass.Views.CompassPage"
              xmlns:dataTemplates="clr-namespace:Compass.Views.DataTemplates"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              x:DataType="viewModels:CompassViewModel"
              xmlns:converters="clr-namespace:Compass.Commons.Converters"
              xmlns:entities="clr-namespace:Compass.Models.Entities"
@@ -14,6 +15,11 @@
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
         <converters:ReverseRotationConverter x:Key="ReverseRotationConverter"/>
     </ContentPage.Resources>
+
+    <ContentPage.Behaviors>
+        <mct:StatusBarBehavior StatusBarStyle="LightContent"></mct:StatusBarBehavior>
+
+    </ContentPage.Behaviors>
 
     <ContentPage.Content>
         <Grid RowDefinitions="250, 60, 60, *" VerticalOptions="FillAndExpand" IgnoreSafeArea="True" ios:Page.UseSafeArea="True">
@@ -38,11 +44,13 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <Label
-                            Text="{Binding Longitude}"/>
 
                         <Label
                             Text="{Binding Latitude}"/>
+
+                        <Label
+                            Text="{Binding Longitude}"/>
+
 
                     </StackLayout>
                 </StackLayout>

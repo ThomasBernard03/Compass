@@ -5,7 +5,7 @@
              xmlns:wrappers="clr-namespace:Compass.Models.Wrappers"
              x:DataType="wrappers:LocationWrapper">
 
-    <StackLayout Orientation="Vertical">
+    <StackLayout Orientation="Vertical" WidthRequest="80">
         <Label
             HorizontalTextAlignment="Center"
             Text="{Binding Name}"/>
@@ -23,7 +23,6 @@
             BackgroundColor="{Binding Color}"
             HasShadow="False"
             VerticalOptions="EndAndExpand"/>
-
     </StackLayout>
 </ContentView>
 
