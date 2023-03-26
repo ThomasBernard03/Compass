@@ -68,14 +68,21 @@
 
             <Grid Grid.Row="3" Padding="12">
 
-                <StackLayout Grid.Row="3" BackgroundColor="White">
+                <Grid Grid.Row="3">
+
+
 
                     <Image
-                        Source="compass.png"
+                        Source="compass"
+                        HeightRequest="300"
+                        HorizontalOptions="Center"/>
+
+                    <Image
+                        Source="arrow"
                         HeightRequest="200"
                         HorizontalOptions="Center"
-                        Rotation="{Binding CompassValue, Converter={StaticResource ReverseRotationConverter}}"/>
-                </StackLayout>
+                        Rotation="{Binding CompassValue}"/>
+                </Grid>
 
                 <Button
                     Command="{Binding AddCommand}"

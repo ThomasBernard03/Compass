@@ -77,6 +77,7 @@
 	  <None Remove="Models\Entities\" />
 	  <None Remove="Repositories\" />
 	  <None Remove="Repositories\Interfaces\" />
+	  <None Remove="Models\Wrappers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -89,6 +90,7 @@
 	  <Folder Include="Models\Entities\" />
 	  <Folder Include="Repositories\" />
 	  <Folder Include="Repositories\Interfaces\" />
+	  <Folder Include="Models\Wrappers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\compass.png" />

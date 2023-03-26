@@ -7,10 +7,6 @@ public class GpsService : IGpsService
 {
     private const double EarthRadiusMeters = 6371000;
 
-    public GpsService()
-	{
-	}
-
 	/// <summary>
 	/// Return the distance between 2 gps location
 	/// </summary>
@@ -42,6 +38,29 @@ public class GpsService : IGpsService
     {
         var location = await Geolocation.Default.GetLastKnownLocationAsync();
         return location;
+    }
+
+    public double GetAngle(Location location1, Location location2)
+    {
+        double lat1 = DegreeToRadian(location1.Latitude);
+        double lat2 = DegreeToRadian(location2.Latitude);
+        double dLon = DegreeToRadian(location2.Longitude - location1.Longitude);
+
+        double y = Math.Sin(dLon) * Math.Cos(lat2);
+        double x = Math.Cos(lat1) * Math.Sin(lat2) - Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(dLon);
+        double bearing = Math.Atan2(y, x);
+
+        return (RadianToDegree(bearing) + 360) % 360;
+    }
+
+    private double DegreeToRadian(double degree)
+    {
+        return degree * (Math.PI / 180);
+    }
+
+    private double RadianToDegree(double radian)
+    {
+        return radian * (180 / Math.PI);
     }
 }
 
