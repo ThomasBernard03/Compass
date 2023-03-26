@@ -95,8 +95,6 @@ public class CreateLocationViewModel : BaseViewModel
 
     #endregion
 
-
-
     #region Properties
 
     #region Latitude
@@ -147,6 +145,19 @@ public class CreateLocationViewModel : BaseViewModel
         {
             _name = value;
             OnPropertyChanged(nameof(Name));
+        }
+    }
+    #endregion
+
+    #region Color
+    private Color _color;
+    public Color Color
+    {
+        get => _color;
+        set
+        {
+            _color = value;
+            OnPropertyChanged(nameof(Color));
         }
     }
     #endregion

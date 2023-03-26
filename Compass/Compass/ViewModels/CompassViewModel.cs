@@ -5,6 +5,7 @@ using Compass.Services;
 using Compass.Services.Interfaces;
 using Microsoft.Maui.Devices.Sensors;
 using Compass.Repositories.Interfaces;
+using Compass.Models.Wrappers;
 
 namespace Compass.ViewModels;
 
@@ -25,8 +26,9 @@ public class CompassViewModel : BaseViewModel
 
         AddCommand = new Command(async x => await OnAddCommand());
 
-        var locations = _locationRepository.Get();
-        Locations = new ObservableCollection<LocationEntity>(locations);
+        var locationsWrapper = _locationRepository.Get().Select(l => new LocationWrapper(l));
+
+        Locations = new ObservableCollection<LocationWrapper>(locationsWrapper);
 
 
         if (Microsoft.Maui.Devices.Sensors.Compass.Default.IsSupported)
@@ -34,7 +36,7 @@ public class CompassViewModel : BaseViewModel
             if (!Microsoft.Maui.Devices.Sensors.Compass.Default.IsMonitoring)
             {
                 Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged += OnCompassChange;
-                Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.UI);
+                Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.Default);
             }
             else
             {
@@ -42,7 +44,6 @@ public class CompassViewModel : BaseViewModel
                 Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= OnCompassChange;
             }
         }
-
     }
 
     public override Task OnNavigatedFrom(NavigatedFromEventArgs args)
@@ -58,6 +59,7 @@ public class CompassViewModel : BaseViewModel
         Latitude = location.Latitude;
         Longitude = location.Longitude;
 
+        UpdateInformations();
     }
 
     public override Task InitializeAsync(object parameters)
@@ -88,9 +90,38 @@ public class CompassViewModel : BaseViewModel
     private void OnCompassChange(object sender, CompassChangedEventArgs e)
     {
         CompassValue = e.Reading.HeadingMagneticNorth;
+
+        var value = Math.Floor(CompassValue);
+
+        if (value % 30 == 0)
+        {
+            HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
+        }
+        //else
+        //{
+        //    HapticFeedback.Default.Perform(HapticFeedbackType.Click);
+        //}
     }
 
     #endregion
+
+    private void UpdateInformations()
+    {
+        var currentPosition = new Location(Latitude, Longitude);
+
+        foreach (var location in Locations)
+        {
+            var loc = new Location(location.Latitude, location.Longitude);
+            var distance = _gpsService.GetDistance(currentPosition, loc);
+            double angle = _gpsService.GetAngle(currentPosition, loc);
+
+            // Étape 2 : Ajustez l'angle en fonction de votre angle par rapport au nord
+            double adjustedAngle = (angle - CompassValue + 360) % 360;
+
+            location.Distance = distance;
+            location.Angle = adjustedAngle;
+        }
+    }
 
     #endregion
 
@@ -138,8 +169,8 @@ public class CompassViewModel : BaseViewModel
 
     #region Locations
 
-    private ObservableCollection<LocationEntity> _locations;
-    public ObservableCollection<LocationEntity> Locations
+    private ObservableCollection<LocationWrapper> _locations;
+    public ObservableCollection<LocationWrapper> Locations
     {
         get => _locations;
         set

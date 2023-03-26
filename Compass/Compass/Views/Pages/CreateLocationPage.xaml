@@ -35,7 +35,7 @@
             ColumnDefinitions="Auto, *, Auto"
             ColumnSpacing="6"
             RowSpacing="6"
-            RowDefinitions="Auto, Auto, Auto, Auto"
+            RowDefinitions="Auto, Auto, Auto, Auto, Auto"
             Padding="20">
 
             <Label
@@ -69,7 +69,7 @@
             <Label
                 VerticalOptions="Center"
                 Grid.Row="2"
-                Text="Longitude"/>
+                Text="Latitude"/>
 
             <Entry
                 ReturnCommand="{Binding CreateLocationCommand}"
@@ -80,12 +80,32 @@
                 Placeholder="Latitude"
                 Text="{Binding Latitude}"/>
 
+            
+            <Label
+                VerticalOptions="Center"
+                Grid.Row="3"
+                Text="Color"/>
+
+
+            <Entry
+                Grid.Column="1"
+                Grid.Row="3"
+                Text="{Binding Color, Mode=TwoWay}"
+                Placeholder="Color"/>
+
+            <Frame
+                BackgroundColor="{Binding Color, Mode=OneWay}"
+                HasShadow="False"
+                BorderColor="LightGray"
+                Grid.Row="3"
+                Grid.Column="2"/>
+
 
             <Button
                 Command="{Binding CreateLocationCommand}"
                 Padding="12"
                 BackgroundColor="{StaticResource Primary}"
-                Grid.Row="3"
+                Grid.Row="4"
                 Grid.ColumnSpan="3"
                 Text="Create"/>
 

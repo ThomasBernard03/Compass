@@ -5,11 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
 
-    <Style TargetType="Frame" x:Key="Header">
-        <Setter Property="BorderColor" Value="Transparent"/>
+    <Style TargetType="StackLayout" x:Key="Header">
         <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
-        <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="HasShadow" Value="False"/>
     </Style>
 
     <Style TargetType="Frame" x:Key="FloatingMenu">

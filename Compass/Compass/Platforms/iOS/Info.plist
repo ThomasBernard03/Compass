@@ -41,5 +41,7 @@
 	<string>Accès à la caméra pour prendre des photos.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Sauvegarder les photos prises avec l'application.</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
