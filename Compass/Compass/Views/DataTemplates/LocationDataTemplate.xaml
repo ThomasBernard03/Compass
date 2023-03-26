@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Compass.Views.DataTemplates.LocationDataTemplate"
+             xmlns:wrappers="clr-namespace:Compass.Models.Wrappers"
+             x:DataType="wrappers:LocationWrapper">
+
+    <StackLayout Orientation="Vertical">
+        <Label
+            HorizontalTextAlignment="Center"
+            Text="{Binding Name}"/>
+
+
+        <Label
+            HorizontalTextAlignment="Center"
+            Text="{Binding Distance, StringFormat='{0}m'}"/>
+
+
+        <Frame
+            WidthRequest="10"
+            HeightRequest="10"
+            CornerRadius="5"
+            BackgroundColor="{Binding Color}"
+            HasShadow="False"
+            VerticalOptions="EndAndExpand"/>
+
+    </StackLayout>
+</ContentView>
+

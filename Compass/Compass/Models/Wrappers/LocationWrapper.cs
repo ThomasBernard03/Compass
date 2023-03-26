@@ -21,6 +21,7 @@ public class LocationWrapper : BaseWrapper
     public string Name { get; set; }
     public double Latitude { get; set; }
     public double Longitude { get; set; }
+    public Color Color { get; set; } = Colors.Red;
 
     private int _distance { get; set; }
     public int Distance

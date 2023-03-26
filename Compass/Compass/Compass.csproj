@@ -78,6 +78,8 @@
 	  <None Remove="Repositories\" />
 	  <None Remove="Repositories\Interfaces\" />
 	  <None Remove="Models\Wrappers\" />
+	  <None Remove="Views\Pages\" />
+	  <None Remove="Views\DataTemplates\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -91,6 +93,8 @@
 	  <Folder Include="Repositories\" />
 	  <Folder Include="Repositories\Interfaces\" />
 	  <Folder Include="Models\Wrappers\" />
+	  <Folder Include="Views\Pages\" />
+	  <Folder Include="Views\DataTemplates\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\compass.png" />
