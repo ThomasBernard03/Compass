@@ -93,7 +93,7 @@ public class CompassViewModel : BaseViewModel
 
         var value = Math.Floor(CompassValue);
 
-        if (value == 0 || value == 90 || value == 180 || value == 270)
+        if (value % 30 == 0)
         {
             HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
         }
