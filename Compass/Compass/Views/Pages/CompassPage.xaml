@@ -72,20 +72,24 @@
 
             <Grid Grid.Row="3" Padding="12">
 
-                <Grid Grid.Row="3">
-
-
+                <Grid Margin="20">
 
                     <Image
-                        Source="compass"
+                        WidthRequest="300"
                         HeightRequest="300"
+                        VerticalOptions="Center"
+                        Source="compass"
                         HorizontalOptions="Center"/>
 
                     <Image
-                        Source="arrow"
+                        WidthRequest="200"
                         HeightRequest="200"
+                        VerticalOptions="Center"
+                        Source="arrow"
                         HorizontalOptions="Center"
                         Rotation="{Binding CompassValue}"/>
+
+                    <Grid x:Name="compassGrid"/>
                 </Grid>
 
                 <Button

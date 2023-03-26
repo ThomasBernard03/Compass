@@ -94,13 +94,7 @@ public class CompassViewModel : BaseViewModel
         var value = Math.Floor(CompassValue);
 
         if (value % 30 == 0)
-        {
             HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
-        }
-        //else
-        //{
-        //    HapticFeedback.Default.Perform(HapticFeedbackType.Click);
-        //}
     }
 
     #endregion
@@ -119,7 +113,7 @@ public class CompassViewModel : BaseViewModel
             double adjustedAngle = (angle - CompassValue + 360) % 360;
 
             location.Distance = distance;
-            location.Angle = adjustedAngle;
+            location.Angle = angle;
         }
     }
 
