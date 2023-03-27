@@ -25,6 +25,7 @@ public class CompassViewModel : BaseViewModel
         _gpsService = gpsService;
 
         AddCommand = new Command(async x => await OnAddCommand());
+        RefreshCommand = new Command(async x => await OnRefreshCommand());
 
         var locationsWrapper = _locationRepository.Get().Select(l => new LocationWrapper(l));
 
@@ -51,15 +52,11 @@ public class CompassViewModel : BaseViewModel
         return base.OnNavigatedFrom(args);
     }
 
-    public override async Task OnNavigatedTo(NavigatedToEventArgs args)
+    public override async Task OnNavigatedTo()
     {
-        await base.OnNavigatedTo(args);
+        await base.OnNavigatedTo();
 
-        var location = await _gpsService.GetLocationAsync();
-        Latitude = location.Latitude;
-        Longitude = location.Longitude;
-
-        UpdateInformations();
+        await UpdateInformations();
     }
 
     public override Task InitializeAsync(object parameters)
@@ -82,7 +79,14 @@ public class CompassViewModel : BaseViewModel
 
         }
     }
+    #endregion
 
+    #region RefreshCommand => OnRefreshCommand
+    public Command RefreshCommand { get; private set; }
+    private async Task OnRefreshCommand()
+    {
+        await UpdateInformations();
+    }
     #endregion
 
     #region OnCompassChange
@@ -94,32 +98,31 @@ public class CompassViewModel : BaseViewModel
         var value = Math.Floor(CompassValue);
 
         if (value % 30 == 0)
-        {
             HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
-        }
-        //else
-        //{
-        //    HapticFeedback.Default.Perform(HapticFeedbackType.Click);
-        //}
     }
 
     #endregion
 
-    private void UpdateInformations()
+    private async Task UpdateInformations()
     {
-        var currentPosition = new Location(Latitude, Longitude);
+        LastUpdate = DateTime.Now;
+
+        var currentLocation = await _gpsService.GetLocationAsync();
+        Latitude = currentLocation.Latitude;
+        Longitude = currentLocation.Longitude;
+
 
         foreach (var location in Locations)
         {
             var loc = new Location(location.Latitude, location.Longitude);
-            var distance = _gpsService.GetDistance(currentPosition, loc);
-            double angle = _gpsService.GetAngle(currentPosition, loc);
+            var distance = _gpsService.GetDistance(currentLocation, loc);
+            double angle = _gpsService.GetAngle(currentLocation, loc);
 
             // Étape 2 : Ajustez l'angle en fonction de votre angle par rapport au nord
             double adjustedAngle = (angle - CompassValue + 360) % 360;
 
             location.Distance = distance;
-            location.Angle = adjustedAngle;
+            location.Angle = angle;
         }
     }
 
@@ -150,6 +153,19 @@ public class CompassViewModel : BaseViewModel
         {
             _longitude = value;
             OnPropertyChanged(nameof(Longitude));
+        }
+    }
+    #endregion
+
+    #region LastUpdate
+    private DateTime _lastUpdate;
+    public DateTime LastUpdate
+    {
+        get => _lastUpdate;
+        set
+        {
+            _lastUpdate = value;
+            OnPropertyChanged(nameof(LastUpdate));
         }
     }
     #endregion

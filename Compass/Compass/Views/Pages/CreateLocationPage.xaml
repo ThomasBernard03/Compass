@@ -4,6 +4,7 @@
              x:Class="Compass.Views.CreateLocationPage"
              Title="CreateLocationPage"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             xmlns:commons="clr-namespace:Compass.Commons"
              ios:Page.ModalPresentationStyle="PageSheet"
              NavigationPage.HasNavigationBar="False"
              xmlns:viewModels="clr-namespace:Compass.ViewModels"
@@ -22,8 +23,9 @@
 
 
         <Button
+            FontFamily="FontAwesome"
             Margin="20, 0"
-            Text="+"
+            Text="{Static commons:IconFont.Camera}"
             Grid.Row="1"
             Grid.RowSpan="2"
             Style="{StaticResource FloatingButton}"
@@ -49,9 +51,10 @@
                 Placeholder="Name"/>
 
             <Button
+                FontFamily="FontAwesome"
                 Command="{Binding GetLocationCommand}"
                 Grid.Column="2"
-                Text="+"/>
+                Text="{Static commons:IconFont.LocationDot}"/>
 
             <Label
                 VerticalOptions="Center"
@@ -87,11 +90,11 @@
                 Text="Color"/>
 
 
-            <Entry
+            <Picker
                 Grid.Column="1"
                 Grid.Row="3"
-                Text="{Binding Color, Mode=TwoWay}"
-                Placeholder="Color"/>
+                SelectedItem="{Binding Color}"
+                ItemsSource="{Binding Colors}"/>
 
             <Frame
                 BackgroundColor="{Binding Color, Mode=OneWay}"

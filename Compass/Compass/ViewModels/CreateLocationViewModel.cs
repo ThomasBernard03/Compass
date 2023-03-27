@@ -18,6 +18,18 @@ public class CreateLocationViewModel : BaseViewModel
         GetLocationCommand = new Command(async x => await OnGetLocationCommand());
         TakePictureCommand = new Command(async x => await OnTakePictureCommand());
         CreateLocationCommand = new Command(async x => await OnCreateLocationCommand());
+
+        var colors = new List<Color>()
+        {
+            Microsoft.Maui.Graphics.Colors.Red,
+            Microsoft.Maui.Graphics.Colors.Blue,
+            Microsoft.Maui.Graphics.Colors.Green,
+            Microsoft.Maui.Graphics.Colors.Yellow,
+            Microsoft.Maui.Graphics.Colors.Orange,
+            Microsoft.Maui.Graphics.Colors.Purple,
+        };
+
+        Colors = colors;
     }
 
     public override Task InitializeAsync(object parameters)
@@ -77,7 +89,9 @@ public class CreateLocationViewModel : BaseViewModel
             {
                 Name = Name,
                 Longitude = Longitude,
-                Latitude = Latitude
+                Latitude = Latitude,
+                Color = Color.ToHex()
+
             };
             _locationRepository.Insert(location);
 
@@ -158,6 +172,19 @@ public class CreateLocationViewModel : BaseViewModel
         {
             _color = value;
             OnPropertyChanged(nameof(Color));
+        }
+    }
+    #endregion
+
+    #region Colors
+    private IEnumerable<Color> _colors;
+    public IEnumerable<Color> Colors
+    {
+        get => _colors;
+        set
+        {
+            _colors = value;
+            OnPropertyChanged(nameof(Colors));
         }
     }
     #endregion
