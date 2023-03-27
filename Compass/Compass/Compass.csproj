@@ -80,6 +80,7 @@
 	  <None Remove="Models\Wrappers\" />
 	  <None Remove="Views\Pages\" />
 	  <None Remove="Views\DataTemplates\" />
+	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -101,5 +102,7 @@
 	  <BundleResource Include="Resources\Images\compass.png" />
 	  <BundleResource Include="Resources\Images\compass.png" />
 	  <BundleResource Include="Resources\Images\compass.png" />
+	  <BundleResource Include="Resources\Fonts\fa-solid-900.ttf" />
+	  <BundleResource Include="Resources\Fonts\fa-solid-900.ttf" />
 	</ItemGroup>
 </Project>

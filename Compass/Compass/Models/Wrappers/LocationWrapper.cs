@@ -15,6 +15,7 @@ public class LocationWrapper : BaseWrapper
         Name = location.Name;
         Latitude = location.Latitude;
         Longitude = location.Longitude;
+        Color = Color.FromHex(location.Color);
     }
 
     public long Id { get; set; }

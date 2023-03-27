@@ -6,6 +6,7 @@
              x:Class="Compass.Views.CompassPage"
              xmlns:dataTemplates="clr-namespace:Compass.Views.DataTemplates"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+             xmlns:commons="clr-namespace:Compass.Commons"
              x:DataType="viewModels:CompassViewModel"
              xmlns:converters="clr-namespace:Compass.Commons.Converters"
              xmlns:entities="clr-namespace:Compass.Models.Entities"
@@ -51,6 +52,13 @@
                         <Label
                             Text="{Binding Longitude}"/>
 
+                        <Label
+                            Text="{Binding LastUpdate}"/>
+
+                        <Button
+                            FontFamily="FontAwesome"
+                            Command="{Binding RefreshCommand}"
+                            Text="{Static commons:IconFont.ArrowRotateRight}"/>
 
                     </StackLayout>
                 </StackLayout>
@@ -93,10 +101,10 @@
                 </Grid>
 
                 <Button
+                    FontFamily="FontAwesome"
                     Command="{Binding AddCommand}"
                     Style="{StaticResource FloatingButton}"
-                    Text="+"
-                    FontSize="32"/>
+                    Text="{Static commons:IconFont.Plus}"/>
             </Grid>
 
 
