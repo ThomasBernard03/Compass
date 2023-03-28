@@ -15,14 +15,8 @@
     Title="MapPage"
     x:DataType="viewmodels:MapViewModel">
 
-    <ContentPage.Behaviors>
-        <mct:StatusBarBehavior StatusBarStyle="DarkContent"></mct:StatusBarBehavior>
-    </ContentPage.Behaviors>
-
-
     <ContentPage.Resources>
         <DataTemplate x:Name="BottomSheetTemplate" x:Key="BottomSheetTemplate">
-			<ScrollView>
 				<VerticalStackLayout
 					Spacing="25"
 					Padding="30,0"
@@ -50,7 +44,6 @@
 					<Button Text="Close"
 					        SemanticProperties.Hint="Closes the bottom sheet"/>
 				</VerticalStackLayout>
-			</ScrollView>
 		</DataTemplate>
 
     </ContentPage.Resources>

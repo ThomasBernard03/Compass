@@ -1,13 +1,15 @@
 ﻿using System;
+using Compass.Services.Interfaces;
 using Microsoft.Maui.Platform;
 using UIKit;
 
-namespace Compass.Platforms.iOS;
+namespace Compass.Platforms.iOS.Services;
 
-public static partial class PageExtensions
+public class DialogService : IDialogService
 {
-    public static UIViewController ShowBottomSheet(this Page page, IView bottomSheetContent, bool dimDismiss)
+    public UIViewController ShowBottomSheet(IView bottomSheetContent, bool dimDismiss)
     {
+        var page = Application.Current.MainPage;
         var mauiContext = page.Handler?.MauiContext ?? throw new Exception("MauiContext is null");
         var viewController = page.ToUIViewController(mauiContext);
         var viewControllerToPresent = bottomSheetContent.ToUIViewController(mauiContext);
@@ -30,8 +32,9 @@ public static partial class PageExtensions
         return viewControllerToPresent;
     }
 
-    public static void CloseBottomSheet(this UIViewController bottomSheet)
+    public void CloseBottomSheet(UIViewController bottomSheet)
     {
         bottomSheet.DismissViewController(true, null);
     }
 }
+

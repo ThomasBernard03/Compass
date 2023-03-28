@@ -13,17 +13,20 @@ public class MapViewModel : BaseViewModel
 {
     private readonly IRepository<LocationEntity> _locationRepository;
     private readonly IGpsService _gpsService;
+    public IDialogService _dialogService { get; }
 
     public MapViewModel(
         INavigationService navigationService,
         IRepository<LocationEntity> locationRepository,
-        IGpsService gpsService) : base(navigationService)
+        IGpsService gpsService,
+        IDialogService dialogService) : base(navigationService)
     {
         CloseMapCommand = new Command(async x => await OnCloseMapCommand());
         MapClickedCommand = new Command(async x => await OnMapClickedCommand());
 
         _locationRepository = locationRepository;
         _gpsService = gpsService;
+        _dialogService = dialogService;
     }
 
     public async override Task OnNavigatedTo()

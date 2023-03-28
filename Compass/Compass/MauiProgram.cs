@@ -10,6 +10,12 @@ using Compass.Repositories;
 using Microsoft.Maui.Controls.Hosting;
 using Compass.Views.Pages;
 
+#if IOS
+using Compass.Platforms.iOS.Services;
+#elif ANDROID
+using Compass.Platforms.Android.Services;
+#endif
+
 namespace Compass;
 
 public static class MauiProgram
@@ -62,6 +68,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<IGpsService, GpsService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
+        mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
 
 
         mauiAppBuilder.Services.AddSingleton<IRepository<LocationEntity>, Repository<LocationEntity>>();

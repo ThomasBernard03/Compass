@@ -1,10 +1,8 @@
 ﻿using Compass.ViewModels;
+using Compass.Services.Interfaces;
 
 #if IOS
-using Compass.Platforms.iOS;
 using BottomSheetView = UIKit.UIViewController;
-
-
 #endif
 
 namespace Compass.Views.Pages;
@@ -36,21 +34,14 @@ public partial class MapPage : ContentPage
         if(sender is Microsoft.Maui.Controls.Maps.Pin pin) {
             await _viewmodel.OnPinClickedAsync(long.Parse(pin.Address));
 
-#if IOS
-            this.ShowBottomSheet(GetBottomSheetView(), true);
-
-
-#endif
+            _viewmodel._dialogService.ShowBottomSheet(GetBottomSheetView(), true);
         }
     }
 
-#if IOS
     private View GetBottomSheetView()
     {
         var view = (View)BottomSheetTemplate.CreateContent();
         view.BindingContext = BindingContext;
         return view;
     }
-
-#endif
 }

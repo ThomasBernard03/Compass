@@ -80,7 +80,8 @@
 	  <None Remove="Views\Pages\" />
 	  <None Remove="Views\DataTemplates\" />
 	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
-	  <None Remove="Commons\Extensions\" />
+	  <None Remove="Platforms\iOS\Services\" />
+	  <None Remove="Platforms\Android\Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -96,7 +97,8 @@
 	  <Folder Include="Models\Wrappers\" />
 	  <Folder Include="Views\Pages\" />
 	  <Folder Include="Views\DataTemplates\" />
-	  <Folder Include="Commons\Extensions\" />
+	  <Folder Include="Platforms\iOS\Services\" />
+	  <Folder Include="Platforms\Android\Services\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\compass.png" />
