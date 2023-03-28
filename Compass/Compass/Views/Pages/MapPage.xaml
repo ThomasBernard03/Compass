@@ -1,35 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
-             x:Class="Compass.Views.Pages.MapPage"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             ios:Page.ModalPresentationStyle="PageSheet"
-             xmlns:viewmodels="clr-namespace:Compass.ViewModels"
-             xmlns:commons="clr-namespace:Compass.Commons"
-             Title="MapPage"
-             x:DataType="viewmodels:MapViewModel"
-             ios:Page.UseSafeArea="True">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Compass.Views.Pages.MapPage"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    ios:Page.ModalPresentationStyle="PageSheet"
+    xmlns:viewmodels="clr-namespace:Compass.ViewModels"
+    xmlns:commons="clr-namespace:Compass.Commons"
+    xmlns:wrappers="clr-namespace:Compass.Models.Wrappers"
+    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+    Title="MapPage"
+    x:DataType="viewmodels:MapViewModel">
+
+    <ContentPage.Behaviors>
+        <mct:StatusBarBehavior StatusBarStyle="DarkContent"></mct:StatusBarBehavior>
+    </ContentPage.Behaviors>
 
     <Grid
-         IgnoreSafeArea="True" ios:Page.UseSafeArea="True" RowDefinitions="Auto, *">
-
-        <Button
-            TextColor="Black"
-            Command="{Binding CloseMapCommand}"
-            HorizontalOptions="End"
-            HeightRequest="50"
-            WidthRequest="50"
-            Padding="25"
-            BackgroundColor="#50FFFFFF"
-            Text="{Static commons:IconFont.Xmark}"
-            FontFamily="FontAwesome"/>
+        RowDefinitions="Auto, *">
 
         <maps:Map
+            ItemsSource="{Binding Locations}"
             x:Name="locationMap"
             Grid.Row="1"
             IsShowingUser="True">
+            <maps:Map.ItemTemplate>
+                <DataTemplate x:DataType="wrappers:LocationWrapper">
+                    <maps:Pin
+                        Address="{Binding Id}"
+                        MarkerClicked="Pin_MarkerClicked"
+                        Type="SavedPin"
+                        Label="{Binding Name}"
+                        Location="{Binding Location}">
+                    </maps:Pin>
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
             <maps:Map.Behaviors>
                 <toolkit:EventToCommandBehavior
                     EventName="MapClicked"
