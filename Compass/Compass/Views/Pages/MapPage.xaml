@@ -19,6 +19,42 @@
         <mct:StatusBarBehavior StatusBarStyle="DarkContent"></mct:StatusBarBehavior>
     </ContentPage.Behaviors>
 
+
+    <ContentPage.Resources>
+        <DataTemplate x:Name="BottomSheetTemplate" x:Key="BottomSheetTemplate">
+			<ScrollView>
+				<VerticalStackLayout
+					Spacing="25"
+					Padding="30,0"
+					VerticalOptions="Center">
+
+					<Image Source="dotnet_bot.png"
+					       WidthRequest="200"
+					       HeightRequest="200"/>
+
+					<Label
+						Text="Welcome to .NET Multi-platform App UI"
+						SemanticProperties.HeadingLevel="Level1"
+						SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+						FontSize="18"
+						HorizontalOptions="Center" />
+
+					<Label
+						SemanticProperties.Hint="Counts the number of times you click"
+						FontSize="18"
+						HorizontalOptions="Center" />
+
+					<Button Text="Increment count"
+					        SemanticProperties.Hint="Increments the number of times you click"/>
+
+					<Button Text="Close"
+					        SemanticProperties.Hint="Closes the bottom sheet"/>
+				</VerticalStackLayout>
+			</ScrollView>
+		</DataTemplate>
+
+    </ContentPage.Resources>
+
     <Grid
         RowDefinitions="Auto, *">
 
