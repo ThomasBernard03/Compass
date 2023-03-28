@@ -1,4 +1,5 @@
 ﻿using Compass.Views;
+using Compass.Views.Pages;
 
 namespace Compass;
 
@@ -9,7 +10,7 @@ public partial class App : Application
 		InitializeComponent();
 
 		//MainPage = new AppShell();
-		 MainPage = serviceProvider.GetService<CompassPage>();
+		 MainPage = serviceProvider.GetService<MainTabbedPage>();
     }
 }
 

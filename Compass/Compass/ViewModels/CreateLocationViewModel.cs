@@ -2,6 +2,7 @@
 using Compass.Models.Entities;
 using Compass.Repositories.Interfaces;
 using Compass.Services.Interfaces;
+using Compass.Views.Pages;
 
 namespace Compass.ViewModels;
 
@@ -18,6 +19,7 @@ public class CreateLocationViewModel : BaseViewModel
         GetLocationCommand = new Command(async x => await OnGetLocationCommand());
         TakePictureCommand = new Command(async x => await OnTakePictureCommand());
         CreateLocationCommand = new Command(async x => await OnCreateLocationCommand());
+        OpenMapCommand = new Command(async x => await OnOpenMapCommand());
 
         var colors = new List<Color>()
         {
@@ -32,11 +34,6 @@ public class CreateLocationViewModel : BaseViewModel
         Colors = colors;
     }
 
-    public override Task InitializeAsync(object parameters)
-    {
-        throw new NotImplementedException();
-    }
-
     #region Commands & Methods
 
     #region GetLocationCommand => OnGetLocationCommand
@@ -47,6 +44,15 @@ public class CreateLocationViewModel : BaseViewModel
 
         Latitude = location.Latitude;
         Longitude = location.Longitude;
+    }
+    #endregion
+
+
+    #region OpenMapCommand => OnOpenMapCommand
+    public Command OpenMapCommand { get; private set; }
+    private async Task OnOpenMapCommand()
+    {
+        await NavigationService.NavigateToModalAsync<MapViewModel>();
     }
     #endregion
 

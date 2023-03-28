@@ -59,11 +59,6 @@ public class CompassViewModel : BaseViewModel
         await UpdateInformations();
     }
 
-    public override Task InitializeAsync(object parameters)
-    {
-        throw new NotImplementedException();
-    }
-
     #region Methods & Commands
 
     #region AddCommand => OnAddCommand

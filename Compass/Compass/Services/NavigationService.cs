@@ -2,6 +2,7 @@
 using Compass.Services.Interfaces;
 using Compass.ViewModels;
 using Compass.Views;
+using Compass.Views.Pages;
 
 namespace Compass.Services;
 
@@ -22,6 +23,7 @@ public class NavigationService : INavigationService
         // Ajoutez les mappings entre les ViewModels et les Views ici
         _mappings.Add(typeof(CompassViewModel), typeof(CompassPage));
         _mappings.Add(typeof(CreateLocationViewModel), typeof(CreateLocationPage));
+        _mappings.Add(typeof(MapViewModel), typeof(MapPage));
     }
 
     public async Task NavigateToAsync<TViewModel>(object parameter = null) where TViewModel : BaseViewModel
@@ -48,11 +50,6 @@ public class NavigationService : INavigationService
         {
             await Application.Current.MainPage.Navigation.PushAsync(view);
         }
-
-        if (parameter != null)
-        {
-            await viewModel.InitializeAsync(parameter);
-        }
     }
 
     public async Task GoBackAsync()
@@ -77,11 +74,6 @@ public class NavigationService : INavigationService
 
 
         await Application.Current.MainPage.Navigation.PushModalAsync(view);
-
-        if (parameter != null)
-        {
-            await viewModel.InitializeAsync(parameter);
-        }
     }
 
     public async Task CloseModalAsync()
