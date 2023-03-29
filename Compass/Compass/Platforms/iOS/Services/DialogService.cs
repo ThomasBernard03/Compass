@@ -56,8 +56,9 @@ public class DialogService : IDialogService
         return viewControllerToPresent;
     }
 
-    public void CloseBottomSheet(UIViewController bottomSheet)
+    public void CloseBottomSheet()
     {
+        var bottomSheet = UIApplication.SharedApplication.KeyWindow.RootViewController;
         bottomSheet.DismissViewController(true, null);
     }
 }

@@ -10,14 +10,18 @@ public class LocationDetailViewModel : BaseViewModel
 {
     private readonly IRepository<LocationEntity> _locationRepository;
     private readonly IGpsService _gpsService;
+    private readonly IDialogService _dialogService;
 
     public LocationDetailViewModel(
         INavigationService navigationService,
         IRepository<LocationEntity> locationRepository,
-        IGpsService gpsService) : base(navigationService)
+        IGpsService gpsService,
+        IDialogService dialogService) : base(navigationService)
     {
+        _dialogService = dialogService;
         _locationRepository = locationRepository;
-        Location = new LocationWrapper();
+
+        DeleteLocationCommand = new Command(OnDeleteLocationCommand);
     }
 
 
@@ -33,6 +37,12 @@ public class LocationDetailViewModel : BaseViewModel
             Location = location;
         }
 
+    }
+
+    public Command DeleteLocationCommand { get; private set; }
+    private void OnDeleteLocationCommand()
+    {
+        _dialogService.CloseBottomSheet();
     }
 
     #region Location

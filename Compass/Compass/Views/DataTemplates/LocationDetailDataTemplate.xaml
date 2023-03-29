@@ -64,6 +64,7 @@
             Spacing="10"
             VerticalOptions="EndAndExpand">
             <Button
+                Command="{Binding DeleteLocationCommand}"
                 Text="Delete"/>
 
             <Button

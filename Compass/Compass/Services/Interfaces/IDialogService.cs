@@ -12,6 +12,6 @@ namespace Compass.Services.Interfaces;
 public interface IDialogService
 {
     Task<BottomSheetView> ShowBottomSheet<TView>(bool dimDismiss = true, bool expandable = false, object parameters = null) where TView : IView;
-    void CloseBottomSheet(BottomSheetView bottomSheet);
+    void CloseBottomSheet();
 }
 
