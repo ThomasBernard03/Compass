@@ -7,7 +7,7 @@ namespace Compass.Platforms.iOS.Services;
 
 public class DialogService : IDialogService
 {
-    public UIViewController ShowBottomSheet(IView bottomSheetContent, bool dimDismiss)
+    public UIViewController ShowBottomSheet(IView bottomSheetContent, bool dimDismiss = true, bool expandable = false)
     {
         var page = Application.Current.MainPage;
         var mauiContext = page.Handler?.MauiContext ?? throw new Exception("MauiContext is null");
@@ -17,11 +17,20 @@ public class DialogService : IDialogService
         var sheet = viewControllerToPresent.SheetPresentationController;
         if (sheet is not null)
         {
-            sheet.Detents = new[]
+            if (expandable) {
+                sheet.Detents = new[]
+                {
+                    UISheetPresentationControllerDetent.CreateMediumDetent(),
+                    UISheetPresentationControllerDetent.CreateLargeDetent(),
+                };
+            }
+            else
             {
-                UISheetPresentationControllerDetent.CreateMediumDetent(),
-                UISheetPresentationControllerDetent.CreateLargeDetent(),
-            };
+                sheet.Detents = new[] {
+                    UISheetPresentationControllerDetent.CreateMediumDetent(),
+                };
+            }
+
             sheet.LargestUndimmedDetentIdentifier = dimDismiss ? UISheetPresentationControllerDetentIdentifier.Unknown : UISheetPresentationControllerDetentIdentifier.Medium;
             sheet.PrefersScrollingExpandsWhenScrolledToEdge = false;
             sheet.PrefersEdgeAttachedInCompactHeight = true;

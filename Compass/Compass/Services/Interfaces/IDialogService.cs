@@ -10,7 +10,7 @@ namespace Compass.Services.Interfaces;
 
 public interface IDialogService
 {
-    BottomSheetView ShowBottomSheet(IView bottomSheetContent, bool dimDismiss);
+    BottomSheetView ShowBottomSheet(IView bottomSheetContent, bool dimDismiss = true, bool expandable = false);
     void CloseBottomSheet(BottomSheetView bottomSheet);
 }
 

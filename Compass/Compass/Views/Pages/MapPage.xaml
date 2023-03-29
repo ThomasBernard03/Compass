@@ -7,38 +7,33 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     ios:Page.ModalPresentationStyle="PageSheet"
     xmlns:viewmodels="clr-namespace:Compass.ViewModels"
-    xmlns:commons="clr-namespace:Compass.Commons"
     xmlns:wrappers="clr-namespace:Compass.Models.Wrappers"
-    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
-    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
     Title="Map"
-    x:DataType="viewmodels:MapViewModel">
+    x:DataType="viewmodels:MapViewModel"
+    ios:Page.UseSafeArea="False">
 
-    <Grid
-        RowDefinitions="Auto, *">
-
-        <maps:Map
-            ItemsSource="{Binding Locations}"
-            x:Name="locationMap"
-            Grid.Row="1"
-            IsShowingUser="True">
-            <maps:Map.ItemTemplate>
-                <DataTemplate x:DataType="wrappers:LocationWrapper">
-                    <maps:Pin
-                        Address="{Binding Id}"
-                        MarkerClicked="Pin_MarkerClicked"
-                        Type="SavedPin"
-                        Label="{Binding Name}"
-                        Location="{Binding Location}">
-                    </maps:Pin>
-                </DataTemplate>
-            </maps:Map.ItemTemplate>
-            <maps:Map.Behaviors>
-                <toolkit:EventToCommandBehavior
-                    EventName="MapClicked"
-                    Command="{Binding MapClickedCommand}"/>
-            </maps:Map.Behaviors>
-        </maps:Map>
-    </Grid>
+    <maps:Map
+        ios:Page.UseSafeArea="True"
+        ItemsSource="{Binding Locations}"
+        x:Name="locationMap"
+        Grid.Row="1"
+        IsShowingUser="True">
+        <maps:Map.ItemTemplate>
+            <DataTemplate x:DataType="wrappers:LocationWrapper">
+                <maps:Pin
+                    Address="{Binding Id}"
+                    MarkerClicked="Pin_MarkerClicked"
+                    Type="SavedPin"
+                    Label="{Binding Name}"
+                    Location="{Binding Location}">
+                </maps:Pin>
+            </DataTemplate>
+        </maps:Map.ItemTemplate>
+        <maps:Map.Behaviors>
+            <toolkit:EventToCommandBehavior
+                EventName="MapClicked"
+                Command="{Binding MapClickedCommand}"/>
+        </maps:Map.Behaviors>
+    </maps:Map>
 </ContentPage>
