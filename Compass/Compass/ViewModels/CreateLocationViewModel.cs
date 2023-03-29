@@ -34,6 +34,19 @@ public class CreateLocationViewModel : BaseViewModel
         Colors = colors;
     }
 
+        var colors = new List<Color>()
+        {
+            Microsoft.Maui.Graphics.Colors.Red,
+            Microsoft.Maui.Graphics.Colors.Blue,
+            Microsoft.Maui.Graphics.Colors.Green,
+            Microsoft.Maui.Graphics.Colors.Yellow,
+            Microsoft.Maui.Graphics.Colors.Orange,
+            Microsoft.Maui.Graphics.Colors.Purple,
+        };
+
+        Colors = colors;
+    }
+
     #region Commands & Methods
 
     #region GetLocationCommand => OnGetLocationCommand
