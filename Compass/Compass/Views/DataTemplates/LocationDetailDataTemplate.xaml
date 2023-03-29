@@ -2,12 +2,72 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Compass.Views.DataTemplates.LocationDetailDataTemplate"
-             >
-    <VerticalStackLayout>
-        <Label 
-            Text="{Binding Location.Id}"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:local="clr-namespace:Compass.Views.DataTemplates"
+             xmlns:converters="clr-namespace:Compass.Commons.Converters"
+             x:DataType="local:LocationDetailDataTemplate">
+
+    <ContentView.Resources>
+        <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
+    </ContentView.Resources>
+
+    <StackLayout Orientation="Vertical" Padding="20">
+
+        <StackLayout
+            Orientation="Horizontal">
+            <Label
+                VerticalTextAlignment="Center"
+                Margin="0, 0, 0, 20"
+                FontSize="26"
+                Text="{Binding Location.Name}"
+                FontAttributes="Bold"/>
+
+            <Label
+                VerticalTextAlignment="Center"
+                Margin="0, 0, 0, 20"
+                FontSize="18"
+                Text="{Binding Location.Distance}"/>
+
+            <Label
+                VerticalTextAlignment="Center"
+                Margin="0, 0, 0, 20"
+                FontSize="18"
+                Text="{Binding Location.Angle,Converter={StaticResource CompassValueToLabelConverter}}"/>
+
+        </StackLayout>
+
+
+        <Label
+            Text="Latitude"/>
+        <Entry
+            Margin="0, 5, 0, 10"
+            Text="{Binding Location.Latitude}"/>
+
+        <Label
+            Text="Longitude"/>
+        <Entry
+            Margin="0, 5, 0, 10"
+            Text="{Binding Location.Longitude}"/>
+
+        <Label
+            Text="Color"/>
+
+        <Frame
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="{Binding Location.Color}"
+            Margin="0, 5, 0, 10"
+            HasShadow="False"/>
+
+
+        <StackLayout
+            Orientation="Horizontal"
+            Spacing="10"
+            VerticalOptions="EndAndExpand">
+            <Button
+                Text="Delete"/>
+
+            <Button
+                Text="Save"/>
+        </StackLayout>
+    </StackLayout>
 </ContentView>
 
