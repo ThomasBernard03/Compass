@@ -4,10 +4,17 @@ using Compass.Services.Interfaces;
 using Compass.ViewModels;
 using Compass.Views;
 using Microsoft.Extensions.Logging;
-using Compass.Services.Interfaces;
 using Compass.Repositories.Interfaces;
 using Compass.Models.Entities;
 using Compass.Repositories;
+using Microsoft.Maui.Controls.Hosting;
+using Compass.Views.Pages;
+
+#if IOS
+using Compass.Platforms.iOS.Services;
+#elif ANDROID
+using Compass.Platforms.Android.Services;
+#endif
 
 namespace Compass;
 
@@ -27,7 +34,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("fa-solid-900.ttf", "FontAwesome");
-            });
+            })
+            .UseMauiMaps();
 
 #if DEBUG
 		builder.Logging.AddDebug();
@@ -40,6 +48,8 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<CompassPage>();
         mauiAppBuilder.Services.AddTransient<CreateLocationPage>();
+        mauiAppBuilder.Services.AddTransient<MapPage>();
+        mauiAppBuilder.Services.AddTransient<MainTabbedPage>();
 
         return mauiAppBuilder;
     }
@@ -49,6 +59,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<CompassViewModel>();
         mauiAppBuilder.Services.AddSingleton<CreateLocationViewModel>();
+        mauiAppBuilder.Services.AddSingleton<MapViewModel>();
 
         return mauiAppBuilder;
     }
@@ -57,6 +68,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<IGpsService, GpsService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
+        mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
 
 
         mauiAppBuilder.Services.AddSingleton<IRepository<LocationEntity>, Repository<LocationEntity>>();

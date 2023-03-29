@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewModels="clr-namespace:Compass.ViewModels"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             x:Class="Compass.Views.CompassPage"
-             xmlns:dataTemplates="clr-namespace:Compass.Views.DataTemplates"
-             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
-             xmlns:commons="clr-namespace:Compass.Commons"
-             x:DataType="viewModels:CompassViewModel"
-             xmlns:converters="clr-namespace:Compass.Commons.Converters"
-             xmlns:entities="clr-namespace:Compass.Models.Entities"
-             ios:Page.UseSafeArea="False">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Compass.ViewModels"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    x:Class="Compass.Views.CompassPage"
+    xmlns:dataTemplates="clr-namespace:Compass.Views.DataTemplates"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    xmlns:commons="clr-namespace:Compass.Commons"
+    x:DataType="viewModels:CompassViewModel"
+    xmlns:converters="clr-namespace:Compass.Commons.Converters"
+    xmlns:entities="clr-namespace:Compass.Models.Entities"
+    ios:Page.UseSafeArea="False"
+    Title="CompassPage">
 
     <ContentPage.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
@@ -19,7 +21,6 @@
 
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarStyle="LightContent"></mct:StatusBarBehavior>
-
     </ContentPage.Behaviors>
 
     <ContentPage.Content>

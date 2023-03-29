@@ -37,6 +37,9 @@
 		</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Fill in a reason why your app needs access to location.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Can we use your location at all times?</string>
+
 	<key>NSCameraUsageDescription</key>
 	<string>Accès à la caméra pour prendre des photos.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

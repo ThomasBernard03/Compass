@@ -34,11 +34,12 @@
 
         <Grid
             Grid.Row="3"
-            ColumnDefinitions="Auto, *, Auto"
+            ColumnDefinitions="Auto, *, Auto, Auto"
             ColumnSpacing="6"
             RowSpacing="6"
             RowDefinitions="Auto, Auto, Auto, Auto, Auto"
             Padding="20">
+
 
             <Label
                 VerticalOptions="Center"
@@ -56,6 +57,12 @@
                 Grid.Column="2"
                 Text="{Static commons:IconFont.LocationDot}"/>
 
+            <Button
+                FontFamily="FontAwesome"
+                Command="{Binding OpenMapCommand}"
+                Grid.Column="3"
+                Text="{Static commons:IconFont.Map}"/>
+
             <Label
                 VerticalOptions="Center"
                 Grid.Row="1"
@@ -65,7 +72,7 @@
                 ReturnType="Next"
                 Grid.Row="1"
                 Grid.Column="1"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 Placeholder="Longitude"
                 Text="{Binding Longitude}"/>
 
@@ -79,7 +86,7 @@
                 ReturnType="Done"
                 Grid.Row="2"
                 Grid.Column="1"
-                Grid.ColumnSpan="2"
+                Grid.ColumnSpan="3"
                 Placeholder="Latitude"
                 Text="{Binding Latitude}"/>
 
@@ -93,6 +100,7 @@
             <Picker
                 Grid.Column="1"
                 Grid.Row="3"
+                Grid.ColumnSpan="2"
                 SelectedItem="{Binding Color}"
                 ItemsSource="{Binding Colors}"/>
 
@@ -101,7 +109,7 @@
                 HasShadow="False"
                 BorderColor="LightGray"
                 Grid.Row="3"
-                Grid.Column="2"/>
+                Grid.Column="3"/>
 
 
             <Button
@@ -109,9 +117,8 @@
                 Padding="12"
                 BackgroundColor="{StaticResource Primary}"
                 Grid.Row="4"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="4"
                 Text="Create"/>
-
         </Grid>
 
     </Grid>
