@@ -29,7 +29,7 @@ public class Repository<T> : IRepository<T> where T : class, new()
         _connection.Delete(value);
     }
 
-    public T GetById(int id)
+    public T GetById(long id)
     {
         return _connection.Find<T>(id);
     }

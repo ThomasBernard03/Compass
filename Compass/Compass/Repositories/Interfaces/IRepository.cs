@@ -7,7 +7,7 @@ public interface IRepository<T>
     void Delete(T value);
     T Insert(T value);
     T Update(T value);
-    T GetById(int id);
+    T GetById(long id);
     List<T> Get();
 }
 

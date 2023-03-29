@@ -4,6 +4,7 @@ using Compass.Models.Entities;
 using Compass.Models.Wrappers;
 using Compass.Repositories.Interfaces;
 using Compass.Services.Interfaces;
+using Compass.Views.DataTemplates;
 using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Maps;
 
@@ -54,7 +55,8 @@ public class MapViewModel : BaseViewModel
 
     public async Task OnPinClickedAsync(long id)
     {
-        //await NavigationService.CloseModalAsync();
+        var location = Locations.FirstOrDefault(x => x.Id == id);
+        _dialogService.ShowBottomSheet(new LocationDetailDataTemplate(location), true);
     }
 
 
