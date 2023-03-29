@@ -1,4 +1,5 @@
 ﻿using System;
+using Compass.ViewModels;
 
 #if ANDROID
 using BottomSheetView = Google.Android.Material.BottomSheet.BottomSheetDialog;
@@ -10,7 +11,7 @@ namespace Compass.Services.Interfaces;
 
 public interface IDialogService
 {
-    BottomSheetView ShowBottomSheet(IView bottomSheetContent, bool dimDismiss = true, bool expandable = false);
+    Task<BottomSheetView> ShowBottomSheet<TView>(bool dimDismiss = true, bool expandable = false, object parameters = null) where TView : IView;
     void CloseBottomSheet(BottomSheetView bottomSheet);
 }
 

@@ -30,9 +30,9 @@ public class MapViewModel : BaseViewModel
         _dialogService = dialogService;
     }
 
-    public async override Task OnNavigatedTo()
+    public async override Task OnNavigatedTo(object parameters = null)
     {
-        await base.OnNavigatedTo();
+        await base.OnNavigatedTo(parameters);
 
         var locationsWrapper = _locationRepository.Get().Select(x => new LocationWrapper(x));
 
@@ -56,7 +56,7 @@ public class MapViewModel : BaseViewModel
     public async Task OnPinClickedAsync(long id)
     {
         var location = Locations.FirstOrDefault(x => x.Id == id);
-        _dialogService.ShowBottomSheet(new LocationDetailDataTemplate(location), true);
+        await _dialogService.ShowBottomSheet<LocationDetailDataTemplate>(true, parameters:id);
     }
 
 

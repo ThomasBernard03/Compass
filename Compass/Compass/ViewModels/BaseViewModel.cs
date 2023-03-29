@@ -25,7 +25,7 @@ public abstract class BaseViewModel : INotifyPropertyChanged
 
     }
 
-    public virtual async Task OnNavigatedTo()
+    public virtual async Task OnNavigatedTo(object parameters = null)
     {
 
     }

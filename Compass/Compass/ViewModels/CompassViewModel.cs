@@ -52,9 +52,9 @@ public class CompassViewModel : BaseViewModel
         return base.OnNavigatedFrom(args);
     }
 
-    public override async Task OnNavigatedTo()
+    public override async Task OnNavigatedTo(object parameters = null)
     {
-        await base.OnNavigatedTo();
+        await base.OnNavigatedTo(parameters);
 
         await UpdateInformations();
     }

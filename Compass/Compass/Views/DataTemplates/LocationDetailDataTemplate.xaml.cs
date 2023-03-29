@@ -1,16 +1,18 @@
 ﻿using Compass.Models.Wrappers;
+using Compass.ViewModels;
 
 namespace Compass.Views.DataTemplates;
 
 public partial class LocationDetailDataTemplate : ContentView
 {
-	public LocationWrapper Location { get; private set; }
+	private LocationDetailViewModel _locationDetailViewModel;
 
-	public LocationDetailDataTemplate(LocationWrapper location)
+
+    public LocationDetailDataTemplate(LocationDetailViewModel locationDetailViewModel)
 	{
-		Location = location;
-
         InitializeComponent();
-		this.BindingContext = this;
-	}
+        _locationDetailViewModel = locationDetailViewModel;
+        BindingContext = _locationDetailViewModel;
+
+    }
 }

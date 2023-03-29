@@ -4,7 +4,8 @@
              x:Class="Compass.Views.DataTemplates.LocationDetailDataTemplate"
              xmlns:local="clr-namespace:Compass.Views.DataTemplates"
              xmlns:converters="clr-namespace:Compass.Commons.Converters"
-             x:DataType="local:LocationDetailDataTemplate">
+             xmlns:viewModels="clr-namespace:Compass.ViewModels"
+             x:DataType="viewModels:LocationDetailViewModel">
 
     <ContentView.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>

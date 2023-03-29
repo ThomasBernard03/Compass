@@ -9,6 +9,7 @@ using Compass.Models.Entities;
 using Compass.Repositories;
 using Microsoft.Maui.Controls.Hosting;
 using Compass.Views.Pages;
+using Compass.Views.DataTemplates;
 
 #if IOS
 using Compass.Platforms.iOS.Services;
@@ -26,7 +27,6 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .RegisterViews()
-			.RegisterViewModels()
 			.RegisterServices()
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
@@ -46,20 +46,11 @@ public static class MauiProgram
 
     private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
-        mauiAppBuilder.Services.AddSingleton<CompassPage>();
-        mauiAppBuilder.Services.AddTransient<CreateLocationPage>();
-        mauiAppBuilder.Services.AddTransient<MapPage>();
+        mauiAppBuilder.Services.AddSingleton<CompassPage, CompassViewModel>();
+        mauiAppBuilder.Services.AddTransient<CreateLocationPage, CreateLocationViewModel>();
+        mauiAppBuilder.Services.AddTransient<MapPage, MapViewModel>();
+        mauiAppBuilder.Services.AddTransient<LocationDetailDataTemplate, LocationDetailViewModel>();
         mauiAppBuilder.Services.AddTransient<MainTabbedPage>();
-
-        return mauiAppBuilder;
-    }
-
-
-    private static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
-    {
-        mauiAppBuilder.Services.AddSingleton<CompassViewModel>();
-        mauiAppBuilder.Services.AddSingleton<CreateLocationViewModel>();
-        mauiAppBuilder.Services.AddSingleton<MapViewModel>();
 
         return mauiAppBuilder;
     }
