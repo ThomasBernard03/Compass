@@ -20,13 +20,6 @@ public partial class CompassPage : ContentPage
         base.OnNavigatedFrom(args);
     }
 
-    protected async override void OnAppearing()
-    {
-        base.OnAppearing();
-        await _viewModel.OnNavigatedTo();
-        drawLocations();
-    }
-
     protected async override void OnNavigatedTo(NavigatedToEventArgs args)
     {
         await _viewModel.OnNavigatedTo();

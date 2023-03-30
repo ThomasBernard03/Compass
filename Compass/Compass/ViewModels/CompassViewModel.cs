@@ -28,33 +28,23 @@ public class CompassViewModel : BaseViewModel
         RefreshCommand = new Command(async x => await OnRefreshCommand());
 
         var locationsWrapper = _locationRepository.Get().Select(l => new LocationWrapper(l));
-
         Locations = new ObservableCollection<LocationWrapper>(locationsWrapper);
-
-
-        if (Microsoft.Maui.Devices.Sensors.Compass.Default.IsSupported)
-		{
-            if (!Microsoft.Maui.Devices.Sensors.Compass.Default.IsMonitoring)
-            {
-                Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged += OnCompassChange;
-                Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.Default);
-            }
-            else
-            {
-                Microsoft.Maui.Devices.Sensors.Compass.Default.Stop();
-                Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= OnCompassChange;
-            }
-        }
     }
 
-    public override Task OnNavigatedFrom(NavigatedFromEventArgs args)
+    public async override Task OnNavigatedFrom(NavigatedFromEventArgs args)
     {
-        return base.OnNavigatedFrom(args);
+        await base.OnNavigatedFrom(args);
+
+        Microsoft.Maui.Devices.Sensors.Compass.Default.Stop();
+        Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= OnCompassChange;
     }
 
     public override async Task OnNavigatedTo(object parameters = null)
     {
         await base.OnNavigatedTo(parameters);
+
+        Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged += OnCompassChange;
+        Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.Default);
 
         await UpdateInformations();
     }
