@@ -68,6 +68,7 @@
                 Text="Delete"/>
 
             <Button
+                Command="{Binding SaveLocationCommand}"
                 Text="Save"/>
         </StackLayout>
     </StackLayout>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Compass.Models.Entities;
+using Compass.Models.Navigation;
 using Compass.Models.Wrappers;
 using Compass.Repositories.Interfaces;
 using Compass.Services.Interfaces;
@@ -55,8 +56,17 @@ public class MapViewModel : BaseViewModel
 
     public async Task OnPinClickedAsync(long id)
     {
-        var location = Locations.FirstOrDefault(x => x.Id == id);
-        await _dialogService.ShowBottomSheet<LocationDetailDataTemplate>(true, parameters:id);
+        var tcs = new TaskCompletionSource<object>();
+
+        var handler = (sender, e) =>
+        {
+            tcs.TrySetResult(e.Result);
+        };
+
+        _dialogService.BottomSheetResult += handler;
+        var bottomSheet = await _dialogService.ShowBottomSheet<LocationDetailDataTemplate>(true, parameters: id);
+        var result = await tcs.Task;
+        _dialogService.BottomSheetResult -= handler;
     }
 
 

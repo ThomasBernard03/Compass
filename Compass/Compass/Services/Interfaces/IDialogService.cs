@@ -1,4 +1,5 @@
 ﻿using System;
+using Compass.Models.Navigation;
 using Compass.ViewModels;
 
 #if ANDROID
@@ -12,6 +13,7 @@ namespace Compass.Services.Interfaces;
 public interface IDialogService
 {
     Task<BottomSheetView> ShowBottomSheet<TView>(bool dimDismiss = true, bool expandable = false, object parameters = null) where TView : IView;
-    void CloseBottomSheet();
+    void CloseBottomSheet(object result = null);
+    event EventHandler<BottomSheetResultEventArgs> BottomSheetResult;
 }
 

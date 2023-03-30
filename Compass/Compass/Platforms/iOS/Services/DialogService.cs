@@ -1,4 +1,5 @@
 ﻿using System;
+using Compass.Models.Navigation;
 using Compass.Services.Interfaces;
 using Compass.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,12 @@ public class DialogService : IDialogService
     public DialogService(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
+    }
+
+    public event EventHandler<BottomSheetResultEventArgs> BottomSheetResult;
+    protected virtual void OnBottomSheetResult(BottomSheetResultEventArgs e)
+    {
+        BottomSheetResult?.Invoke(this, e);
     }
 
 
@@ -56,10 +63,11 @@ public class DialogService : IDialogService
         return viewControllerToPresent;
     }
 
-    public void CloseBottomSheet()
+    public void CloseBottomSheet(object result = null)
     {
         var bottomSheet = UIApplication.SharedApplication.KeyWindow.RootViewController;
         bottomSheet.DismissViewController(true, null);
+        OnBottomSheetResult(new BottomSheetResultEventArgs(result));
     }
 }
 

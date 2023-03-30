@@ -82,6 +82,7 @@
 	  <None Remove="Resources\Fonts\fa-solid-900.ttf" />
 	  <None Remove="Platforms\iOS\Services\" />
 	  <None Remove="Platforms\Android\Services\" />
+	  <None Remove="Models\Navigation\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -99,6 +100,7 @@
 	  <Folder Include="Views\DataTemplates\" />
 	  <Folder Include="Platforms\iOS\Services\" />
 	  <Folder Include="Platforms\Android\Services\" />
+	  <Folder Include="Models\Navigation\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\compass.png" />

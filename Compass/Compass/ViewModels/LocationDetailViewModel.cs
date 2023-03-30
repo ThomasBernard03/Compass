@@ -22,6 +22,7 @@ public class LocationDetailViewModel : BaseViewModel
         _locationRepository = locationRepository;
 
         DeleteLocationCommand = new Command(OnDeleteLocationCommand);
+        SaveLocationCommand = new Command(OnSaveLocationCommand);
     }
 
 
@@ -42,7 +43,13 @@ public class LocationDetailViewModel : BaseViewModel
     public Command DeleteLocationCommand { get; private set; }
     private void OnDeleteLocationCommand()
     {
-        _dialogService.CloseBottomSheet();
+        _dialogService.CloseBottomSheet("deleted");
+    }
+
+    public Command SaveLocationCommand { get; private set; }
+    private void OnSaveLocationCommand()
+    {
+        _dialogService.CloseBottomSheet("saved");
     }
 
     #region Location
