@@ -24,7 +24,7 @@ public class MapViewModel : BaseViewModel
         IDialogService dialogService) : base(navigationService)
     {
         CloseMapCommand = new Command(async x => await OnCloseMapCommand());
-        MapClickedCommand = new Command(async x => await OnMapClickedCommand());
+        MapClickedCommand = new Command<Location>(location => OnMapClickedCommand(location));
 
         _locationRepository = locationRepository;
         _gpsService = gpsService;
@@ -48,8 +48,8 @@ public class MapViewModel : BaseViewModel
         await NavigationService.CloseModalAsync();
     }
 
-    public Command MapClickedCommand { get; private set; }
-    private async Task OnMapClickedCommand()
+    public Command<Location> MapClickedCommand { get; private set; }
+    private void OnMapClickedCommand(Location location)
     {
         //await NavigationService.CloseModalAsync();
     }
@@ -58,7 +58,7 @@ public class MapViewModel : BaseViewModel
     {
         var tcs = new TaskCompletionSource<object>();
 
-        var handler = (sender, e) =>
+        EventHandler<BottomSheetResultEventArgs> handler = (sender, e) =>
         {
             tcs.TrySetResult(e.Result);
         };

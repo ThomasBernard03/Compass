@@ -16,6 +16,7 @@
     <maps:Map
         ios:Page.UseSafeArea="True"
         ItemsSource="{Binding Locations}"
+        MapClicked="locationMap_MapClicked"
         x:Name="locationMap"
         Grid.Row="1"
         IsShowingUser="True">

@@ -11,7 +11,6 @@
             HorizontalTextAlignment="Center"
             Text="{Binding Name}"/>
 
-
         <Label
             HorizontalTextAlignment="Center"
             Text="{Binding Distance, StringFormat='{0}m'}"/>
@@ -24,6 +23,12 @@
             FontFamily="FontAwesome"
             Text="{Static commons:IconFont.LocationDot}"
             TextColor="{Binding Color}"/>
+
+        <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer
+                Command="{Binding Path=BindingContext.LocationSelectedCommand, Source={RelativeSource AncestorType={x:Type ContentPage}}}"
+                CommandParameter="{Binding}"/>
+        </StackLayout.GestureRecognizers>
     </StackLayout>
 </ContentView>
 

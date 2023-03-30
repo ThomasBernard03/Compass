@@ -6,6 +6,8 @@ using Compass.Services.Interfaces;
 using Microsoft.Maui.Devices.Sensors;
 using Compass.Repositories.Interfaces;
 using Compass.Models.Wrappers;
+using Compass.Models.Navigation;
+using Compass.Views.DataTemplates;
 
 namespace Compass.ViewModels;
 
@@ -14,18 +16,22 @@ public class CompassViewModel : BaseViewModel
 
     private readonly IRepository<LocationEntity> _locationRepository;
     private readonly IGpsService _gpsService;
+    private readonly IDialogService _dialogService;
 
 
 	public CompassViewModel(
         INavigationService navigationService,
         IRepository<LocationEntity> locationRepository,
-        IGpsService gpsService) : base(navigationService)
+        IGpsService gpsService,
+        IDialogService dialogService) : base(navigationService)
 	{
         _locationRepository = locationRepository;
         _gpsService = gpsService;
+        _dialogService = dialogService;
 
         AddCommand = new Command(async x => await OnAddCommand());
         RefreshCommand = new Command(async x => await OnRefreshCommand());
+        LocationSelectedCommand = new Command<LocationWrapper>(async x => await OnLocationSelectedCommand(x));
 
         var locationsWrapper = _locationRepository.Get().Select(l => new LocationWrapper(l));
         Locations = new ObservableCollection<LocationWrapper>(locationsWrapper);
@@ -63,6 +69,24 @@ public class CompassViewModel : BaseViewModel
         {
 
         }
+    }
+    #endregion
+
+    #region LocationSelectedCommand => OnLocationSelectedCommand
+    public Command<LocationWrapper> LocationSelectedCommand { get; private set; }
+    private async Task OnLocationSelectedCommand(LocationWrapper location)
+    {
+        var tcs = new TaskCompletionSource<object>();
+
+        EventHandler<BottomSheetResultEventArgs> handler = (sender, e) =>
+        {
+            tcs.TrySetResult(e.Result);
+        };
+
+        _dialogService.BottomSheetResult += handler;
+        var bottomSheet = await _dialogService.ShowBottomSheet<LocationDetailDataTemplate>(true, parameters: location.Id);
+        var result = await tcs.Task;
+        _dialogService.BottomSheetResult -= handler;
     }
     #endregion
 

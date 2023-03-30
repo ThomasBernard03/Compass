@@ -27,4 +27,9 @@ public partial class MapPage : ContentPage
             await _viewmodel.OnPinClickedAsync(long.Parse(pin.Address));
         }
     }
+
+    void locationMap_MapClicked(System.Object sender, Microsoft.Maui.Controls.Maps.MapClickedEventArgs e)
+    {
+        _viewmodel.MapClickedCommand.Execute(e.Location);
+    }
 }

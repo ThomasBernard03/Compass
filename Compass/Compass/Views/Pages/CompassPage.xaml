@@ -12,6 +12,7 @@
     xmlns:converters="clr-namespace:Compass.Commons.Converters"
     xmlns:entities="clr-namespace:Compass.Models.Entities"
     ios:Page.UseSafeArea="False"
+    x:Name="LocationPage"
     Title="CompassPage">
 
     <ContentPage.Resources>
