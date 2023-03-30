@@ -50,6 +50,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<CreateLocationPage, CreateLocationViewModel>();
         mauiAppBuilder.Services.AddTransient<MapPage, MapViewModel>();
         mauiAppBuilder.Services.AddTransient<LocationDetailDataTemplate, LocationDetailViewModel>();
+        mauiAppBuilder.Services.AddTransient<SettingsPage, SettingsViewModel>();
         mauiAppBuilder.Services.AddTransient<MainTabbedPage>();
 
         return mauiAppBuilder;

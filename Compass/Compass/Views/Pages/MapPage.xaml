@@ -11,7 +11,8 @@
     xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
     Title="Map"
     x:DataType="viewmodels:MapViewModel"
-    ios:Page.UseSafeArea="False">
+    ios:Page.UseSafeArea="False"
+    IconImageSource="map_icon">
 
     <maps:Map
         ios:Page.UseSafeArea="True"

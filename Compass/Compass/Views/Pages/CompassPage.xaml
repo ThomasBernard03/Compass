@@ -13,7 +13,8 @@
     xmlns:entities="clr-namespace:Compass.Models.Entities"
     ios:Page.UseSafeArea="False"
     x:Name="LocationPage"
-    Title="CompassPage">
+    Title="Compass"
+    IconImageSource="compass_icon">
 
     <ContentPage.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>

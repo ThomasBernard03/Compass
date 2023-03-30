@@ -8,8 +8,10 @@ public partial class MainTabbedPage : TabbedPage
 
         var compassPage = serviceProvider.GetService<CompassPage>();
         var mapPage = serviceProvider.GetService<MapPage>();
+        var settingsPage = serviceProvider.GetService<SettingsPage>();
 
         this.tab.Children.Add(compassPage);
         this.tab.Children.Add(mapPage);
+        this.tab.Children.Add(settingsPage);
     }
 }
