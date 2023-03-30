@@ -30,9 +30,9 @@ public partial class CompassPage : ContentPage
 
     private void drawLocations()
     {
-        double rayon = 120; // Définissez le rayon du cercle
-        double centreX = compassGrid.Width / 2;
-        double centreY = compassGrid.Height / 2;
+        double rayon = 140; // Définissez le rayon du cercle
+        double centreX = compassGrid.Height / 2;
+        double centreY = compassGrid.Width / 2;
 
         compassGrid.Children.Clear();
         foreach (var location in _viewModel.Locations)

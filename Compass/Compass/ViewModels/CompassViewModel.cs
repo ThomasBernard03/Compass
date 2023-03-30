@@ -8,6 +8,7 @@ using Compass.Repositories.Interfaces;
 using Compass.Models.Wrappers;
 using Compass.Models.Navigation;
 using Compass.Views.DataTemplates;
+using Compass.Views;
 
 namespace Compass.ViewModels;
 
@@ -61,14 +62,7 @@ public class CompassViewModel : BaseViewModel
     public Command AddCommand { get; private set; }
     private async Task OnAddCommand()
     {
-        try
-        {
-            await NavigationService.NavigateToModalAsync<CreateLocationViewModel>();
-        }
-        catch (Exception e)
-        {
-
-        }
+        await _dialogService.ShowBottomSheet<CreateLocationDataTemplate>(true, false);
     }
     #endregion
 

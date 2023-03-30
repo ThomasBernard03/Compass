@@ -100,7 +100,11 @@
                         HorizontalOptions="Center"
                         Rotation="{Binding CompassValue}"/>
 
-                    <Grid x:Name="compassGrid"/>
+                    <Grid
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        x:Name="compassGrid"/>
+
                 </Grid>
 
                 <Button

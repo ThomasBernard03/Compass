@@ -22,7 +22,6 @@ public class NavigationService : INavigationService
     {
         // Ajoutez les mappings entre les ViewModels et les Views ici
         _mappings.Add(typeof(CompassViewModel), typeof(CompassPage));
-        _mappings.Add(typeof(CreateLocationViewModel), typeof(CreateLocationPage));
         _mappings.Add(typeof(MapViewModel), typeof(MapPage));
     }
 

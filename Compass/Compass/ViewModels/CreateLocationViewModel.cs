@@ -19,7 +19,6 @@ public class CreateLocationViewModel : BaseViewModel
         GetLocationCommand = new Command(async x => await OnGetLocationCommand());
         TakePictureCommand = new Command(async x => await OnTakePictureCommand());
         CreateLocationCommand = new Command(async x => await OnCreateLocationCommand());
-        OpenMapCommand = new Command(async x => await OnOpenMapCommand());
 
         var colors = new List<Color>()
         {
@@ -48,14 +47,6 @@ public class CreateLocationViewModel : BaseViewModel
     }
     #endregion
 
-
-    #region OpenMapCommand => OnOpenMapCommand
-    public Command OpenMapCommand { get; private set; }
-    private async Task OnOpenMapCommand()
-    {
-        await NavigationService.NavigateToModalAsync<MapViewModel>();
-    }
-    #endregion
 
     #region TakePictureCommand => OnTakePictureCommand
     public Command TakePictureCommand { get; private set; }

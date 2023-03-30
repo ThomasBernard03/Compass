@@ -1,17 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Compass.Views.CreateLocationPage"
-             Title="CreateLocationPage"
-             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-             xmlns:commons="clr-namespace:Compass.Commons"
-             ios:Page.ModalPresentationStyle="PageSheet"
-             NavigationPage.HasNavigationBar="False"
-             xmlns:viewModels="clr-namespace:Compass.ViewModels"
-             x:DataType="viewModels:CreateLocationViewModel">
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Compass.Views.DataTemplates.CreateLocationDataTemplate"
+    xmlns:viewModels="clr-namespace:Compass.ViewModels"
+    x:DataType="viewModels:CreateLocationViewModel"
+    xmlns:commons="clr-namespace:Compass.Commons">
 
-
-    <Grid RowDefinitions="200, 25, 25, *">
+    <Grid RowDefinitions="100, *">
 
         <Image
             Grid.RowSpan="2"
@@ -21,20 +17,9 @@
             HorizontalOptions="FillAndExpand"
             Source="{Binding Picture}"/>
 
-
-        <Button
-            FontFamily="FontAwesome"
-            Margin="20, 0"
-            Text="{Static commons:IconFont.Camera}"
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            Style="{StaticResource FloatingButton}"
-            Command="{Binding TakePictureCommand}"/>
-
-
         <Grid
-            Grid.Row="3"
-            ColumnDefinitions="Auto, *, Auto, Auto"
+            Grid.Row="1"
+            ColumnDefinitions="Auto, *, Auto"
             ColumnSpacing="6"
             RowSpacing="6"
             RowDefinitions="Auto, Auto, Auto, Auto, Auto"
@@ -57,12 +42,6 @@
                 Grid.Column="2"
                 Text="{Static commons:IconFont.LocationDot}"/>
 
-            <Button
-                FontFamily="FontAwesome"
-                Command="{Binding OpenMapCommand}"
-                Grid.Column="3"
-                Text="{Static commons:IconFont.Map}"/>
-
             <Label
                 VerticalOptions="Center"
                 Grid.Row="1"
@@ -72,7 +51,7 @@
                 ReturnType="Next"
                 Grid.Row="1"
                 Grid.Column="1"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="2"
                 Placeholder="Longitude"
                 Text="{Binding Longitude}"/>
 
@@ -86,7 +65,7 @@
                 ReturnType="Done"
                 Grid.Row="2"
                 Grid.Column="1"
-                Grid.ColumnSpan="3"
+                Grid.ColumnSpan="2"
                 Placeholder="Latitude"
                 Text="{Binding Latitude}"/>
 
@@ -100,7 +79,6 @@
             <Picker
                 Grid.Column="1"
                 Grid.Row="3"
-                Grid.ColumnSpan="2"
                 SelectedItem="{Binding Color}"
                 ItemsSource="{Binding Colors}"/>
 
@@ -117,10 +95,9 @@
                 Padding="12"
                 BackgroundColor="{StaticResource Primary}"
                 Grid.Row="4"
-                Grid.ColumnSpan="4"
+                Grid.ColumnSpan="3"
                 Text="Create"/>
         </Grid>
 
     </Grid>
-
-</ContentPage>
+</ContentView>

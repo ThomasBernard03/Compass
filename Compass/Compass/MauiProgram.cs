@@ -46,11 +46,13 @@ public static class MauiProgram
 
     private static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
     {
-        mauiAppBuilder.Services.AddSingleton<CompassPage, CompassViewModel>();
-        mauiAppBuilder.Services.AddTransient<CreateLocationPage, CreateLocationViewModel>();
-        mauiAppBuilder.Services.AddTransient<MapPage, MapViewModel>();
+        mauiAppBuilder.Services.AddTransient<CreateLocationDataTemplate, CreateLocationViewModel>();
         mauiAppBuilder.Services.AddTransient<LocationDetailDataTemplate, LocationDetailViewModel>();
+
+        mauiAppBuilder.Services.AddSingleton<CompassPage, CompassViewModel>();
+        mauiAppBuilder.Services.AddTransient<MapPage, MapViewModel>();
         mauiAppBuilder.Services.AddTransient<SettingsPage, SettingsViewModel>();
+
         mauiAppBuilder.Services.AddTransient<MainTabbedPage>();
 
         return mauiAppBuilder;
