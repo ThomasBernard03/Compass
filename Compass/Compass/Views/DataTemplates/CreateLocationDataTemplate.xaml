@@ -12,7 +12,6 @@
         <Image
             Grid.RowSpan="2"
             Aspect="AspectFill"
-            BackgroundColor="Black"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand"
             Source="{Binding Picture}"/>
