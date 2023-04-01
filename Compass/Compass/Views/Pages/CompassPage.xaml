@@ -58,10 +58,10 @@
                         <Label
                             Text="{Binding LastUpdate}"/>
 
-                        <Button
+                        <!--<Button
                             FontFamily="FontAwesome"
                             Command="{Binding RefreshCommand}"
-                            Text="{Static commons:IconFont.ArrowRotateRight}"/>
+                            Text="{Static commons:IconFont.ArrowRotateRight}"/>-->
 
                     </StackLayout>
                 </StackLayout>
