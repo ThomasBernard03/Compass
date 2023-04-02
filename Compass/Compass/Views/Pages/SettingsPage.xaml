@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Compass.Views.Pages.SettingsPage"
-             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
-             IconImageSource="settings_icon"
-             Title="SettingsPage"
-             xmlns:commons="clr-namespace:Compass.Commons"
-             xmlns:viewModels="clr-namespace:Compass.ViewModels"
-             Shell.NavBarIsVisible="False"
-             x:DataType="viewModels:SettingsViewModel"
-             BackgroundColor="#F5F5F5">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Compass.Views.Pages.SettingsPage"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    IconImageSource="settings_icon"
+    Title="SettingsPage"
+    xmlns:commons="clr-namespace:Compass.Commons"
+    xmlns:viewModels="clr-namespace:Compass.ViewModels"
+    Shell.NavBarIsVisible="False"
+    x:DataType="viewModels:SettingsViewModel"
+    BackgroundColor="{AppThemeBinding Light={StaticResource LightGrey}, Dark={StaticResource Black}}">
 
     <ContentPage.Behaviors>
-        <mct:StatusBarBehavior StatusBarStyle="DarkContent"></mct:StatusBarBehavior>
+        <mct:StatusBarBehavior StatusBarStyle="Default"></mct:StatusBarBehavior>
     </ContentPage.Behaviors>
 
     <StackLayout>
@@ -21,6 +22,7 @@
             Padding="20">
 
         <Label
+            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
             Text="Settings"
             FontSize="Title"/>
 
@@ -28,11 +30,12 @@
             <StackLayout
                 Margin="0, 15, 0, 0">
                 <Label
+                    TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                     Text="Apparence"/>
 
                 <Frame
                     Margin="0, 5, 0, 0"
-                    BackgroundColor="{StaticResource White}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource LightBlack}}"
                     Padding="5"
                     CornerRadius="10"
                     HasShadow="False">
@@ -43,10 +46,12 @@
                         <StackLayout Orientation="Horizontal"
                                      Padding="5">
                             <Label
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                                 FontSize="18"
                                 Text="Based on system"
                                 VerticalOptions="Center"/>
                             <Switch
+                                IsEnabled="False"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
@@ -54,10 +59,12 @@
                         <StackLayout Orientation="Horizontal" Grid.Row="1"
                                      Padding="5">
                             <Label
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                                 FontSize="18"
-                                Text="Light mode"
+                                Text="Dark mode"
                                 VerticalOptions="Center"/>
                             <Switch
+                                IsToggled="{Binding IsDarkMode}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
