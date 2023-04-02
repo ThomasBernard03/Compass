@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Compass.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Compass.Views.Pages"
+    FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="{StaticResource White}">
+
+    <TabBar>
+        <Tab
+            Title="Compass"
+            Icon="compass_icon">
+           <ShellContent ContentTemplate="{DataTemplate pages:CompassPage}" />
+       </Tab>
+        <Tab
+            Title="Map"
+            Icon="map_icon">
+           <ShellContent ContentTemplate="{DataTemplate pages:MapPage}" />
+       </Tab>
+       <Tab Title="Settings"
+            Icon="settings_icon">
+           <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" />
+       </Tab>
+
+    </TabBar>
+</Shell>

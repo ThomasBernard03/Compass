@@ -9,8 +9,8 @@ public partial class App : Application
     {
 		InitializeComponent();
 
-		//MainPage = new AppShell();
-		 MainPage = serviceProvider.GetService<MainTabbedPage>();
+		MainPage = new AppShell();
+		//MainPage = serviceProvider.GetService<MainTabbedPage>();
     }
 }
 

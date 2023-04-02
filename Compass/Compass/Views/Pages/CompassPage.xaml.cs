@@ -1,6 +1,6 @@
 ﻿using Compass.ViewModels;
 
-namespace Compass.Views;
+namespace Compass.Views.Pages;
 
 public partial class CompassPage : ContentPage
 {

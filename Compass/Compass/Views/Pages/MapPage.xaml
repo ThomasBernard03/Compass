@@ -13,7 +13,8 @@
     x:DataType="viewmodels:MapViewModel"
     ios:Page.UseSafeArea="False"
     IconImageSource="map_icon"
-    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials">
+    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"
+    Shell.NavBarIsVisible="False">
 
     <maps:Map
         ios:Page.UseSafeArea="True"

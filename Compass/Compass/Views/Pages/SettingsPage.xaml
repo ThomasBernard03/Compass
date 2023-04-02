@@ -4,7 +4,8 @@
              x:Class="Compass.Views.Pages.SettingsPage"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              IconImageSource="settings_icon"
-             Title="SettingsPage">
+             Title="SettingsPage"
+             Shell.NavBarIsVisible="False">
 
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarStyle="DarkContent"></mct:StatusBarBehavior>

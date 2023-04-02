@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:Compass.ViewModels"
     xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    x:Class="Compass.Views.CompassPage"
+    x:Class="Compass.Views.Pages.CompassPage"
     xmlns:dataTemplates="clr-namespace:Compass.Views.DataTemplates"
     xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     xmlns:commons="clr-namespace:Compass.Commons"
@@ -14,7 +14,8 @@
     ios:Page.UseSafeArea="False"
     x:Name="LocationPage"
     Title="Compass"
-    IconImageSource="compass_icon">
+    IconImageSource="compass_icon"
+    Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
