@@ -29,6 +29,7 @@ public class MapViewModel : BaseViewModel
         _locationRepository = locationRepository;
         _gpsService = gpsService;
         _dialogService = dialogService;
+        Location = _gpsService.GetLocationAsync().GetAwaiter().GetResult();
     }
 
     public async override Task OnNavigatedTo(object parameters = null)
@@ -39,7 +40,6 @@ public class MapViewModel : BaseViewModel
 
         Locations = new ObservableCollection<LocationWrapper>(locationsWrapper);
 
-        //Location = await _gpsService.GetLocationAsync();
     }
 
     public Command CloseMapCommand { get; private set; }
@@ -90,7 +90,7 @@ public class MapViewModel : BaseViewModel
         get => _location;
         set
         {
-            Location = value;
+            _location = value;
             OnPropertyChanged(nameof(Location));
         }
     }

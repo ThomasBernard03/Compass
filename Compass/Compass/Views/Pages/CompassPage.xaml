@@ -26,12 +26,14 @@
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="250, 60, 60, *" VerticalOptions="FillAndExpand" IgnoreSafeArea="True" ios:Page.UseSafeArea="True">
+        <Grid
+            RowDefinitions="250, 60, 60, *"
+            VerticalOptions="FillAndExpand"
+            IgnoreSafeArea="True"
+            ios:Page.UseSafeArea="True">
+
             <StackLayout Style="{StaticResource Header}" Grid.RowSpan="2">
-                <Border>
-                    <RoundRectangle CornerRadius="0, 0, 10, 10"/>
-                </Border>
-                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                         <Label
                             Text="{Binding CompassValue, StringFormat='{}{0:F0}°'}"
@@ -47,21 +49,20 @@
 
                     </StackLayout>
 
-                    <StackLayout Orientation="Vertical">
+                    <StackLayout
+                        Margin="0, 0, 0, 60"
+                        Orientation="Vertical"
+                        VerticalOptions="EndAndExpand">
 
                         <Label
-                            Text="{Binding Latitude}"/>
+                            TextColor="{StaticResource White}"
+                            HorizontalOptions="Center"
+                            Text="{Binding Latitude, StringFormat='Latitude : {0}'}"/>
 
                         <Label
-                            Text="{Binding Longitude}"/>
-
-                        <Label
-                            Text="{Binding LastUpdate}"/>
-
-                        <!--<Button
-                            FontFamily="FontAwesome"
-                            Command="{Binding RefreshCommand}"
-                            Text="{Static commons:IconFont.ArrowRotateRight}"/>-->
+                            TextColor="{StaticResource White}"
+                            HorizontalOptions="Center"
+                            Text="{Binding Longitude, StringFormat='Longitude : {0}'}"/>
 
                     </StackLayout>
                 </StackLayout>

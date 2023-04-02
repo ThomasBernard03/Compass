@@ -12,7 +12,8 @@
     Title="Map"
     x:DataType="viewmodels:MapViewModel"
     ios:Page.UseSafeArea="False"
-    IconImageSource="map_icon">
+    IconImageSource="map_icon"
+    xmlns:sensors="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials">
 
     <maps:Map
         ios:Page.UseSafeArea="True"
@@ -21,6 +22,20 @@
         x:Name="locationMap"
         Grid.Row="1"
         IsShowingUser="True">
+        <x:Arguments>
+            <MapSpan>
+                <x:Arguments>
+                    <sensors:Location>
+                        <x:Arguments>
+                        <x:Double>{Binding Location.Latitude}</x:Double>
+                        <x:Double>{Binding Location.Longitude}</x:Double>
+                        </x:Arguments>
+                    </sensors:Location>
+                    <x:Double>0.01</x:Double>
+                    <x:Double>0.01</x:Double>
+                </x:Arguments>
+            </MapSpan>
+        </x:Arguments>
         <maps:Map.ItemTemplate>
             <DataTemplate x:DataType="wrappers:LocationWrapper">
                 <maps:Pin
