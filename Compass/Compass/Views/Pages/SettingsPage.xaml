@@ -6,7 +6,10 @@
              IconImageSource="settings_icon"
              Title="SettingsPage"
              xmlns:commons="clr-namespace:Compass.Commons"
-             Shell.NavBarIsVisible="False">
+             xmlns:viewModels="clr-namespace:Compass.ViewModels"
+             Shell.NavBarIsVisible="False"
+             x:DataType="viewModels:SettingsViewModel"
+             BackgroundColor="#F5F5F5">
 
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarStyle="DarkContent"></mct:StatusBarBehavior>
@@ -21,8 +24,53 @@
             Text="Settings"
             FontSize="Title"/>
 
-        </StackLayout>
 
+            <StackLayout
+                Margin="0, 15, 0, 0">
+                <Label
+                    Text="Apparence"/>
+
+                <Frame
+                    Margin="0, 5, 0, 0"
+                    BackgroundColor="{StaticResource White}"
+                    Padding="5"
+                    CornerRadius="10"
+                    HasShadow="False">
+                    <Grid
+                        RowSpacing="5"
+                        RowDefinitions="*, *">
+
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="5">
+                            <Label
+                                FontSize="18"
+                                Text="Based on system"
+                                VerticalOptions="Center"/>
+                            <Switch
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="1"
+                                     Padding="5">
+                            <Label
+                                FontSize="18"
+                                Text="Light mode"
+                                VerticalOptions="Center"/>
+                            <Switch
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+
+
+
+            </StackLayout>
+
+
+        </StackLayout>
 
 
         <Grid
@@ -44,7 +92,7 @@
                 FontSize="18"
                 VerticalOptions="End"
                 Grid.Column="1"
-                Text="Compass v0.0.1"/>
+                Text="{Binding Version, StringFormat='Compass (v{0})'}"/>
 
             <Label
                 TextColor="{StaticResource White}"
@@ -54,12 +102,18 @@
                 Text="thomas.bernard.310@gmail.com"/>
 
             <Label
+                Margin="0, 0, 10, 0"
                 TextColor="{StaticResource White}"
                 Grid.Column="2"
                 Grid.RowSpan="2"
                 VerticalOptions="Center"
                 Text="{Static commons:IconFont.ChevronRight}"
                 FontFamily="FontAwesome"/>
+
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding GoSettingsCommand}"/>
+            </Grid.GestureRecognizers>
 
         </Grid>
 
