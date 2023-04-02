@@ -41,7 +41,7 @@
                     HasShadow="False">
                     <Grid
                         RowSpacing="5"
-                        RowDefinitions="*, *">
+                        RowDefinitions="40, 40">
 
                         <StackLayout Orientation="Horizontal"
                                      Padding="5">
@@ -70,10 +70,64 @@
                         </StackLayout>
                     </Grid>
                 </Frame>
+            </StackLayout>
 
 
+            <StackLayout
+                Margin="0, 15, 0, 0">
+                <Label
+                    TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                    Text="Other"/>
 
+                <Frame
+                    Margin="0, 5, 0, 0"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource LightBlack}}"
+                    Padding="5"
+                    CornerRadius="10"
+                    HasShadow="False">
+                    <Grid
+                        RowSpacing="5"
+                        RowDefinitions="40, 40">
 
+                        <StackLayout Orientation="Horizontal"
+                                     Padding="5">
+                            <Label
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                FontSize="18"
+                                Text="Report a problem"
+                                VerticalOptions="Center"/>
+                            <Label
+                                FontFamily="FontAwesome"
+                                TextColor="{StaticResource Green}"
+                                Text="{Static commons:IconFont.Bug}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand"/>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/ThomasBernard03/Compass/issues"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Grid.Row="1"
+                                     Padding="5">
+                            <Label
+                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                FontSize="18"
+                                Text="Rate me !"
+                                VerticalOptions="Center"/>
+                            <Label
+                                FontFamily="FontAwesome"
+                                TextColor="{StaticResource Yellow}"
+                                Text="{Static commons:IconFont.Star}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand"/>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/ThomasBernard03/Compass"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
             </StackLayout>
 
 

@@ -8,6 +8,7 @@ public class SettingsViewModel : BaseViewModel
     public SettingsViewModel(INavigationService navigationService) : base(navigationService)
     {
         GoSettingsCommand = new Command(OnGoSettingsCommand);
+        OpenUrlCommand = new Command<string>(async x => await OnOpenUrlCommand(x));
 
         IsDarkMode = Application.Current.UserAppTheme == AppTheme.Dark;
     }
@@ -16,6 +17,19 @@ public class SettingsViewModel : BaseViewModel
     public Command GoSettingsCommand { get; private set; }
     private void OnGoSettingsCommand() {
         AppInfo.Current.ShowSettingsUI();
+    }
+
+    public Command<string> OpenUrlCommand { get; private set; }
+    private async Task OnOpenUrlCommand(string url)
+    {
+        Uri uri = new Uri(url);
+        BrowserLaunchOptions options = new BrowserLaunchOptions()
+        {
+            LaunchMode = BrowserLaunchMode.SystemPreferred,
+            TitleMode = BrowserTitleMode.Show,
+        };
+
+        await Browser.Default.OpenAsync(uri, options);
     }
 
 
