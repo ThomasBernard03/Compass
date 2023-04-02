@@ -1,9 +1,14 @@
-﻿namespace Compass.Views.Pages;
+﻿using Compass.ViewModels;
+
+namespace Compass.Views.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
+	private readonly SettingsViewModel _viewModel;
+
+    public SettingsPage(SettingsViewModel settingsViewModel)
 	{
 		InitializeComponent();
-	}
+		BindingContext = _viewModel;
+    }
 }

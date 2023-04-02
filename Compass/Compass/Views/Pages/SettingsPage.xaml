@@ -5,17 +5,63 @@
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              IconImageSource="settings_icon"
              Title="SettingsPage"
+             xmlns:commons="clr-namespace:Compass.Commons"
              Shell.NavBarIsVisible="False">
 
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarStyle="DarkContent"></mct:StatusBarBehavior>
     </ContentPage.Behaviors>
 
+    <StackLayout>
 
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+        <StackLayout
+            Padding="20">
+
+        <Label
+            Text="Settings"
+            FontSize="Title"/>
+
+        </StackLayout>
+
+
+
+        <Grid
+            VerticalOptions="EndAndExpand"
+            BackgroundColor="{StaticResource Primary}"
+            RowSpacing="5"
+            Padding="5"
+            RowDefinitions="*, *"
+            ColumnDefinitions="Auto, *, Auto">
+
+            <Image
+                Grid.RowSpan="2"
+                Source="settings_icon"
+                HeightRequest="80"
+                WidthRequest="80"/>
+
+            <Label
+                TextColor="{StaticResource White}"
+                FontSize="18"
+                VerticalOptions="End"
+                Grid.Column="1"
+                Text="Compass v0.0.1"/>
+
+            <Label
+                TextColor="{StaticResource White}"
+                VerticalOptions="Start"
+                Grid.Column="1"
+                Grid.Row="1"
+                Text="thomas.bernard.310@gmail.com"/>
+
+            <Label
+                TextColor="{StaticResource White}"
+                Grid.Column="2"
+                Grid.RowSpan="2"
+                VerticalOptions="Center"
+                Text="{Static commons:IconFont.ChevronRight}"
+                FontFamily="FontAwesome"/>
+
+        </Grid>
+
+    </StackLayout>
 </ContentPage>
