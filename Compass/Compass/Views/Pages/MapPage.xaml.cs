@@ -21,6 +21,12 @@ public partial class MapPage : ContentPage
         await _viewmodel.OnNavigatedTo();
     }
 
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _viewmodel.OnDisapearing();
+    }
+
     async void Pin_MarkerClicked(System.Object sender, Microsoft.Maui.Controls.Maps.PinClickedEventArgs e)
     {
         if(sender is Microsoft.Maui.Controls.Maps.Pin pin) {

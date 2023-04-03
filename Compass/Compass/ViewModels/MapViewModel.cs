@@ -24,7 +24,7 @@ public class MapViewModel : BaseViewModel
         IDialogService dialogService) : base(navigationService)
     {
         CloseMapCommand = new Command(async x => await OnCloseMapCommand());
-        MapClickedCommand = new Command<Location>(location => OnMapClickedCommand(location));
+        MapClickedCommand = new Command<Location>(async location => await OnMapClickedCommand(location));
 
         _locationRepository = locationRepository;
         _gpsService = gpsService;
@@ -39,6 +39,15 @@ public class MapViewModel : BaseViewModel
         var locationsWrapper = _locationRepository.Get().Select(x => new LocationWrapper(x));
 
         Locations = new ObservableCollection<LocationWrapper>(locationsWrapper);
+    }
+
+    public void OnAppearing()
+    {
+
+    }
+
+    public void OnDisapearing()
+    {
 
     }
 
@@ -49,9 +58,19 @@ public class MapViewModel : BaseViewModel
     }
 
     public Command<Location> MapClickedCommand { get; private set; }
-    private void OnMapClickedCommand(Location location)
+    private async Task OnMapClickedCommand(Location location)
     {
-        //await NavigationService.CloseModalAsync();
+        var tcs = new TaskCompletionSource<object>();
+
+        EventHandler<BottomSheetResultEventArgs> handler = (sender, e) =>
+        {
+            tcs.TrySetResult(e.Result);
+        };
+
+        _dialogService.BottomSheetResult += handler;
+        var bottomSheet = await _dialogService.ShowBottomSheet<CreateLocationDataTemplate>(true, parameters: location);
+        var result = await tcs.Task;
+        _dialogService.BottomSheetResult -= handler;
     }
 
     public async Task OnPinClickedAsync(long id)

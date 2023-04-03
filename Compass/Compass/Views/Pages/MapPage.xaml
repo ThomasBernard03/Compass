@@ -48,10 +48,5 @@
                 </maps:Pin>
             </DataTemplate>
         </maps:Map.ItemTemplate>
-        <maps:Map.Behaviors>
-            <toolkit:EventToCommandBehavior
-                EventName="MapClicked"
-                Command="{Binding MapClickedCommand}"/>
-        </maps:Map.Behaviors>
     </maps:Map>
 </ContentPage>

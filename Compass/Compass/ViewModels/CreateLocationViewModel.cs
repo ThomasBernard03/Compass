@@ -33,6 +33,17 @@ public class CreateLocationViewModel : BaseViewModel
         Colors = colors;
     }
 
+    public override async Task OnNavigatedTo(object parameters = null)
+    {
+        await base.OnNavigatedTo(parameters);
+
+        if (parameters is Location location)
+        {
+            Latitude = location.Latitude;
+            Longitude = location.Longitude;
+        }
+    }
+
 
     #region Commands & Methods
 
