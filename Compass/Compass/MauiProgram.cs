@@ -61,6 +61,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<IGpsService, GpsService>();
         mauiAppBuilder.Services.AddSingleton<INavigationService, NavigationService>();
         mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
+        mauiAppBuilder.Services.AddSingleton<IPreferencesService, PreferencesService>();
 
 
         mauiAppBuilder.Services.AddSingleton<IRepository<LocationEntity>, Repository<LocationEntity>>();

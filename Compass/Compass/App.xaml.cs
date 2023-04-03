@@ -1,16 +1,17 @@
-﻿using Compass.Views;
+﻿using Compass.Services.Interfaces;
+using Compass.Views;
 using Compass.Views.Pages;
 
 namespace Compass;
 
 public partial class App : Application
 {
-	public App(IServiceProvider serviceProvider)
+	public App(IPreferencesService preferencesService)
     {
 		InitializeComponent();
 
 		MainPage = new AppShell();
-		//MainPage = serviceProvider.GetService<MainTabbedPage>();
+		Application.Current.UserAppTheme = preferencesService.IsThemeLight ? AppTheme.Light : AppTheme.Dark;
     }
 }
 

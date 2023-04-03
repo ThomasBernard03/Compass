@@ -15,7 +15,8 @@
     x:Name="LocationPage"
     Title="Compass"
     IconImageSource="compass_icon"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}">
 
     <ContentPage.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
@@ -69,7 +70,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <Frame Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource FloatingMenu}" Padding="5">
+            <Frame Grid.Row="1" Grid.RowSpan="2" Style="{StaticResource FloatingMenu}" Padding="5" BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource LightBlack}}">
                 <CollectionView ItemsSource="{Binding Locations}">
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal" />
@@ -80,10 +81,9 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
             </Frame>
 
-            <Grid Grid.Row="3" Padding="12">
+            <Grid Grid.Row="3" Padding="12" >
 
                 <Grid Margin="20">
 

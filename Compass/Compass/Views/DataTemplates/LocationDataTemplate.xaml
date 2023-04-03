@@ -8,10 +8,12 @@
 
     <StackLayout Orientation="Vertical" WidthRequest="80">
         <Label
+            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
             HorizontalTextAlignment="Center"
             Text="{Binding Name}"/>
 
         <Label
+            TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
             HorizontalTextAlignment="Center"
             Text="{Binding Distance, StringFormat='{0}m'}"/>
 

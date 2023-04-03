@@ -5,12 +5,16 @@ namespace Compass.ViewModels;
 
 public class SettingsViewModel : BaseViewModel
 {
-    public SettingsViewModel(INavigationService navigationService) : base(navigationService)
+    private readonly IPreferencesService _preferencesService;
+
+    public SettingsViewModel(INavigationService navigationService, IPreferencesService preferencesService) : base(navigationService)
     {
+        _preferencesService = preferencesService;
+
         GoSettingsCommand = new Command(OnGoSettingsCommand);
         OpenUrlCommand = new Command<string>(async x => await OnOpenUrlCommand(x));
 
-        IsDarkMode = Application.Current.UserAppTheme == AppTheme.Dark;
+        IsDarkMode = !_preferencesService.IsThemeLight;
     }
 
 
@@ -33,7 +37,11 @@ public class SettingsViewModel : BaseViewModel
     }
 
 
-    private void ThemeChanged(bool isLight) => Application.Current.UserAppTheme = isLight ? AppTheme.Dark : AppTheme.Light;
+    private void ThemeChanged(bool isDark)
+    {
+        _preferencesService.IsThemeLight = !isDark;
+        Application.Current.UserAppTheme = isDark ? AppTheme.Dark : AppTheme.Light;
+    }
 
 
     public string Version { get; } = AppInfo.Current.VersionString;
