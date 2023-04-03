@@ -1,5 +1,6 @@
 ﻿using System;
 using Compass.Services.Interfaces;
+using Microsoft.Maui.ApplicationModel.DataTransfer;
 
 namespace Compass.ViewModels;
 
@@ -13,8 +14,6 @@ public class SettingsViewModel : BaseViewModel
 
         GoSettingsCommand = new Command(OnGoSettingsCommand);
         OpenUrlCommand = new Command<string>(async x => await OnOpenUrlCommand(x));
-
-        IsDarkMode = !_preferencesService.IsThemeLight;
     }
 
 
@@ -39,33 +38,37 @@ public class SettingsViewModel : BaseViewModel
 
     private void ThemeChanged(bool isDark)
     {
-        _preferencesService.IsThemeLight = !isDark;
-        Application.Current.UserAppTheme = isDark ? AppTheme.Dark : AppTheme.Light;
+        if (!_preferencesService.IsThemeBasedOnSystem)
+            Application.Current.UserAppTheme = isDark ? AppTheme.Dark : AppTheme.Light;
+    }
+
+    private void SystemeThemePreferenceChanged(bool isBasedOnSystem)
+    {
+        Application.Current.UserAppTheme = isBasedOnSystem ? AppTheme.Unspecified : _preferencesService.IsDarkTheme ? AppTheme.Dark : AppTheme.Light;
     }
 
 
     public string Version { get; } = AppInfo.Current.VersionString;
 
     #region IsSystemeTheme
-    private bool _isSystemTheme;
     public bool IsSystemeTheme
     {
-        get => _isSystemTheme;
+        get => _preferencesService.IsThemeBasedOnSystem;
         set {
-            _isSystemTheme = value;
+            _preferencesService.IsThemeBasedOnSystem = value;
             OnPropertyChanged(nameof(IsSystemeTheme));
+            SystemeThemePreferenceChanged(value);
         }
     }
     #endregion
 
     #region IsDarkMode
-    private bool _isDarkMode;
     public bool IsDarkMode
     {
-        get => _isDarkMode;
+        get => _preferencesService.IsDarkTheme;
         set
         {
-            _isDarkMode = value;
+            _preferencesService.IsDarkTheme = value;
             OnPropertyChanged(nameof(IsDarkMode));
             ThemeChanged(value);
         }

@@ -11,7 +11,11 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new AppShell();
-		Application.Current.UserAppTheme = preferencesService.IsThemeLight ? AppTheme.Light : AppTheme.Dark;
+
+		if (!preferencesService.IsThemeBasedOnSystem)
+			Application.Current.UserAppTheme = preferencesService.IsDarkTheme ? AppTheme.Dark : AppTheme.Light;
+		else
+			Application.Current.UserAppTheme = Application.Current.RequestedTheme;
     }
 }
 

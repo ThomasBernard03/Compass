@@ -7,6 +7,7 @@
     IconImageSource="settings_icon"
     Title="SettingsPage"
     xmlns:commons="clr-namespace:Compass.Commons"
+    xmlns:converters="clr-namespace:Compass.Commons.Converters"
     xmlns:viewModels="clr-namespace:Compass.ViewModels"
     Shell.NavBarIsVisible="False"
     x:DataType="viewModels:SettingsViewModel"
@@ -15,6 +16,10 @@
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarStyle="Default"></mct:StatusBarBehavior>
     </ContentPage.Behaviors>
+    <ContentPage.Resources>
+        <converters:RevertBooleanConverter x:Key="RevertBooleanConverter"/>
+
+    </ContentPage.Resources>
 
     <StackLayout>
 
@@ -51,7 +56,7 @@
                                 Text="Based on system"
                                 VerticalOptions="Center"/>
                             <Switch
-                                IsEnabled="False"
+                                IsToggled="{Binding IsSystemeTheme}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand"/>
                         </StackLayout>
@@ -64,6 +69,7 @@
                                 Text="Dark mode"
                                 VerticalOptions="Center"/>
                             <Switch
+                                IsEnabled="{Binding IsSystemeTheme, Converter={StaticResource RevertBooleanConverter}}"
                                 IsToggled="{Binding IsDarkMode}"
                                 VerticalOptions="Center"
                                 HorizontalOptions="EndAndExpand"/>

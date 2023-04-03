@@ -11,9 +11,9 @@ public class PreferencesService : IPreferencesService
         set => Preferences.Set(nameof(IsThemeBasedOnSystem), value);
     }
 
-    public bool IsThemeLight
+    public bool IsDarkTheme
 	{
-		get => Preferences.Get(nameof(IsThemeLight), true);
-		set => Preferences.Set(nameof(IsThemeLight), value);
+		get => Preferences.Get(nameof(IsDarkTheme), false);
+		set => Preferences.Set(nameof(IsDarkTheme), value);
     }
 }
