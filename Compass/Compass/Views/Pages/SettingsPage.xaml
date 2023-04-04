@@ -14,11 +14,11 @@
     BackgroundColor="{AppThemeBinding Light={StaticResource LightGrey}, Dark={StaticResource Black}}">
 
     <ContentPage.Behaviors>
-        <mct:StatusBarBehavior StatusBarStyle="Default"></mct:StatusBarBehavior>
+        <mct:StatusBarBehavior StatusBarStyle="{AppThemeBinding Dark=LightContent,Light=DarkContent}"></mct:StatusBarBehavior>
     </ContentPage.Behaviors>
+
     <ContentPage.Resources>
         <converters:RevertBooleanConverter x:Key="RevertBooleanConverter"/>
-
     </ContentPage.Resources>
 
     <StackLayout>

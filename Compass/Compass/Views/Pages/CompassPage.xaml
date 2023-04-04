@@ -18,14 +18,14 @@
     Shell.NavBarIsVisible="False"
     BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}">
 
+    <ContentPage.Behaviors>
+        <mct:StatusBarBehavior StatusBarStyle="{AppThemeBinding Dark=LightContent,Light=DarkContent}"></mct:StatusBarBehavior>
+    </ContentPage.Behaviors>
+
     <ContentPage.Resources>
         <converters:CompassValueToLabelConverter x:Key="CompassValueToLabelConverter"/>
         <converters:ReverseRotationConverter x:Key="ReverseRotationConverter"/>
     </ContentPage.Resources>
-
-    <ContentPage.Behaviors>
-        <mct:StatusBarBehavior StatusBarStyle="LightContent"></mct:StatusBarBehavior>
-    </ContentPage.Behaviors>
 
     <ContentPage.Content>
         <Grid
