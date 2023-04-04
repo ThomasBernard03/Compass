@@ -42,16 +42,22 @@ public class CompassViewModel : BaseViewModel
     {
         await base.OnNavigatedFrom(args);
 
-        Microsoft.Maui.Devices.Sensors.Compass.Default.Stop();
-        Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= OnCompassChange;
+        if (Microsoft.Maui.Devices.Sensors.Compass.IsSupported) {
+            Microsoft.Maui.Devices.Sensors.Compass.Default.Stop();
+            Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged -= OnCompassChange;
+        }
+
     }
 
     public override async Task OnNavigatedTo(object parameters = null)
     {
         await base.OnNavigatedTo(parameters);
 
-        Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged += OnCompassChange;
-        Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.Default);
+        if (Microsoft.Maui.Devices.Sensors.Compass.IsSupported)
+        {
+            Microsoft.Maui.Devices.Sensors.Compass.Default.ReadingChanged += OnCompassChange;
+            Microsoft.Maui.Devices.Sensors.Compass.Default.Start(SensorSpeed.Default);
+        }
 
         await UpdateInformations();
     }
@@ -111,8 +117,8 @@ public class CompassViewModel : BaseViewModel
         LastUpdate = DateTime.Now;
 
         var currentLocation = await _gpsService.GetLocationAsync();
-        Latitude = currentLocation.Latitude;
-        Longitude = currentLocation.Longitude;
+        Latitude = currentLocation?.Latitude ?? 0;
+        Longitude = currentLocation?.Longitude ?? 0;
 
 
         foreach (var location in Locations)
