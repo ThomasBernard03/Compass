@@ -4,7 +4,12 @@
              x:Class="Compass.Views.DataTemplates.LocationDataTemplate"
              xmlns:wrappers="clr-namespace:Compass.Models.Wrappers"
              xmlns:commons="clr-namespace:Compass.Commons"
+             xmlns:converters="clr-namespace:Compass.Commons.Converters"
              x:DataType="wrappers:LocationWrapper">
+
+    <ContentView.Resources>
+        <converters:PrettyDistanceConverter x:Key="PrettyDistanceConverter"/>
+    </ContentView.Resources>
 
     <StackLayout Orientation="Vertical" WidthRequest="80">
         <Label
@@ -15,7 +20,7 @@
         <Label
             TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
             HorizontalTextAlignment="Center"
-            Text="{Binding Distance, StringFormat='{0}m'}"/>
+            Text="{Binding Distance, Converter={StaticResource PrettyDistanceConverter}}"/>
 
         <Label
             HorizontalTextAlignment="Center"
