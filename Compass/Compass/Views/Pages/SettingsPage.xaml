@@ -11,6 +11,7 @@
     xmlns:viewModels="clr-namespace:Compass.ViewModels"
     Shell.NavBarIsVisible="False"
     x:DataType="viewModels:SettingsViewModel"
+    xmlns:skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     BackgroundColor="{AppThemeBinding Light={StaticResource LightGrey}, Dark={StaticResource Black}}">
 
     <ContentPage.Behaviors>
@@ -142,27 +143,29 @@
 
         <Grid
             VerticalOptions="EndAndExpand"
-            BackgroundColor="{StaticResource Primary}"
+            BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource LightBlack}}"
             RowSpacing="5"
             Padding="5"
             RowDefinitions="*, *"
             ColumnDefinitions="Auto, *, Auto">
 
-            <Image
+            <skia:SKLottieView
+                RepeatCount="-1"
+                RepeatMode="Reverse"
                 Grid.RowSpan="2"
-                Source="settings_icon"
                 HeightRequest="80"
-                WidthRequest="80"/>
+                WidthRequest="80"
+                Source="logo.json"/>
 
             <Label
-                TextColor="{StaticResource White}"
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                 FontSize="18"
                 VerticalOptions="End"
                 Grid.Column="1"
                 Text="{Binding Version, StringFormat='Compass (v{0})'}"/>
 
             <Label
-                TextColor="{StaticResource White}"
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                 VerticalOptions="Start"
                 Grid.Column="1"
                 Grid.Row="1"
@@ -170,7 +173,7 @@
 
             <Label
                 Margin="0, 0, 10, 0"
-                TextColor="{StaticResource White}"
+                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
                 Grid.Column="2"
                 Grid.RowSpan="2"
                 VerticalOptions="Center"

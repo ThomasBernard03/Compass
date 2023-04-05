@@ -10,6 +10,7 @@ using Compass.Repositories;
 using Microsoft.Maui.Controls.Hosting;
 using Compass.Views.Pages;
 using Compass.Views.DataTemplates;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 #if IOS
 using Compass.Platforms.iOS.Services;
@@ -35,7 +36,8 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("fa-solid-900.ttf", "FontAwesome");
             })
-            .UseMauiMaps();
+            .UseMauiMaps()
+            .UseSkiaSharp();
 
 #if DEBUG
 		builder.Logging.AddDebug();
