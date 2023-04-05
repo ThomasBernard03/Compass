@@ -36,7 +36,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -76,6 +76,7 @@
 	  <None Remove="Resources\Images\compass_icon.svg" />
 	  <None Remove="Resources\Images\map_icon.svg" />
 	  <None Remove="Resources\Images\settings_icon.svg" />
+	  <None Remove="Resources\Raw\logo.json" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ViewModels\" />
@@ -108,5 +109,12 @@
 	  <BundleResource Include="Resources\Images\map_icon.svg" />
 	  <BundleResource Include="Resources\Images\settings_icon.svg" />
 	  <BundleResource Include="Resources\Images\settings_icon.svg" />
+	  <BundleResource Include="Resources\Raw\logo.json" />
+	  <BundleResource Include="Resources\Raw\logo.json">
+	    <LogicalName>logo.json</LogicalName>
+	  </BundleResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiAsset Remove="Resources\Raw\logo.json" />
 	</ItemGroup>
 </Project>
