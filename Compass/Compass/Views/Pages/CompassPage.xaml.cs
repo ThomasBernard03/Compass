@@ -18,10 +18,13 @@ public partial class CompassPage : ContentPage
     {
         await _viewModel.OnNavigatedFrom(args);
         base.OnNavigatedFrom(args);
+        //MessagingCenter.Unsubscribe<CompassViewModel>(this, "refresh");
     }
 
     protected async override void OnNavigatedTo(NavigatedToEventArgs args)
     {
+        //MessagingCenter.Subscribe<CompassViewModel>(this, "refresh", x => drawLocations());
+
         await _viewModel.OnNavigatedTo();
         base.OnNavigatedTo(args);
         drawLocations();
@@ -30,15 +33,16 @@ public partial class CompassPage : ContentPage
 
     private void drawLocations()
     {
-        double rayon = 140; // Définissez le rayon du cercle
-        double centreX = compassGrid.Height / 2;
-        double centreY = compassGrid.Width / 2;
-
         compassGrid.Children.Clear();
+
+        double rayon = 136; // Définissez le rayon du cercle
+        double centreX = compassGrid.Width / 2;
+        double centreY = compassGrid.Height / 2;
+
         foreach (var location in _viewModel.Locations)
         {
             // Convertir les degrés en radians
-            double angleRadians = location.Angle * Math.PI / 180;
+            double angleRadians = (location.Angle - 90) * Math.PI / 180;
 
             // Calculer les coordonnées X et Y de l'objet
             double x = centreX + rayon * Math.Cos(angleRadians);

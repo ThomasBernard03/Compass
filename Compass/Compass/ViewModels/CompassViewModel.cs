@@ -105,9 +105,7 @@ public class CompassViewModel : BaseViewModel
         CompassValue = e.Reading.HeadingMagneticNorth;
 
         var value = Math.Floor(CompassValue);
-
-        if (value % 30 == 0)
-            HapticFeedback.Default.Perform(HapticFeedbackType.LongPress);
+        HapticFeedback.Default.Perform(HapticFeedbackType.Click);
     }
 
     #endregion
