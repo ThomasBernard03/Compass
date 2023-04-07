@@ -1,8 +1,9 @@
 <div align="center">
   <img width="200" alt="Compass logo" 
-src="https://user-images.githubusercontent.com/67638928/230479052-c8f0ea80-40c3-4783-83f5-0c09da1b057a.png"/>
+src="https://user-images.githubusercontent.com/67638928/230664086-3a28ac17-308f-48fa-9c61-720b09d89e20.png"/>
   <h1>Happy 🧭</h1>
 </div>
+
 
 <img width="1041" alt="Capture d’écran 2023-04-06 à 21 35 56" src="https://user-images.githubusercontent.com/67638928/230477737-d29870f1-0b55-42c8-9fa1-97123348fb86.png">
 
